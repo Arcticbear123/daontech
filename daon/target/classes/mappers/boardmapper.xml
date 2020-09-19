@@ -10,7 +10,11 @@
 	
 	<select id="getBoardDetail" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
     
-        SELECT *
+        SELECT 
+        	BOARD_NO,
+        	BOARD_TITLE,
+        	BOARD_CONTENT,
+        	REG_DATE
         FROM tb_recruit_board
         WHERE BOARD_NO = #{board_no}
     </select>
@@ -26,7 +30,7 @@
         ) 
         VALUES 
         (
-            , #{board_title}
+            #{board_title}
             , #{board_content}
             , NOW() 
         )

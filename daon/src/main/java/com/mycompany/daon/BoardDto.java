@@ -8,15 +8,15 @@ public class BoardDto {
 	int board_no;
     String board_title;
     String board_content;
-    Date board_reg_date;
+    String reg_date;
     String board_writer;
     String result;
     
-    public int getBoard_seq() {
+    public int getBoard_no() {
         return board_no;
     }
  
-    public void setBoard_seq(int board_seq) {
+    public void setBoard_no(int board_no) {
         this.board_no = board_no;
     }
  
@@ -36,12 +36,12 @@ public class BoardDto {
         this.board_content = board_content;
     }
  
-    public Date getIns_reg_date() {
-        return board_reg_date;
+    public String getIns_reg_date() {
+        return reg_date;
     }
  
-    public void setIns_reg_date(Date board_reg_date) {
-        this.board_reg_date = board_reg_date;
+    public void setIns_reg_date(String reg_date) {
+        this.reg_date = reg_date;
     }
     
     

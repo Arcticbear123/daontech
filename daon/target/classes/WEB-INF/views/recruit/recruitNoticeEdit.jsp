@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -14,6 +14,9 @@
 	<script src="js/jquery.min.js"></script>		
 
 </head>
+
+<!-- 공통 CSS -->
+<link rel="stylesheet" type="text/css" href="/css/common/common.css"/>
 
 <!-- 공통 JavaScript -->
 <script type="text/javascript" src="/js/common/jquery.js"></script>
@@ -101,16 +104,18 @@ function insertBoardCallback(obj){
 	<div class="container">
 		<div class="content">
 			<span class="content-header">채용공고</span>
+			<form id="boardForm" name="boardForm">
 			<div class="content-body">
-				<div class="recruitNoticeEdit">											
-					<input class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
-					<textarea class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
+				<div class="recruitNoticeEdit">											`
+					<input id="board_title" name ="board_title" value = "" class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
+					<textarea id = "board_content" name = "board_content" class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
+				</form>
 					<div class="addFileInput" style="margin-bottom:10px;">
 						<i class="addFileIcon fas fa-folder-open"></i>
 						<button class="addFileButton">파일 선택</button>
 					</div>
 					<div class="recruitEdit-btnArea">
-						<button class="cancelBtn" onclick="goBack()" style="margin-right:10px;">취 소</button>
+						<button class="cancelBtn" onclick="javascript:goBoardList();" style="margin-right:10px;">취 소</button>
 						<button class="submitBtn" onclick="javascript:insertBoard();">작성완료</button>
 					</div>
 				</div>				

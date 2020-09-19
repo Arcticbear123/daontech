@@ -21,13 +21,13 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	/** ê²Œì‹œíŒ - ëª©ë¡ í˜ì´ì§€ ì´ë™ */
+	/** °Ô½ÃÆÇ - ¸ñ·Ï ÆäÀÌÁö ÀÌµ¿ */
 	@RequestMapping(value = "/recruitNotice")
     public String recruitNotice(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "recruit/recruitNotice";
     }
-	/** ê²Œì‹œíŒ - ëª©ë¡ ì¡°íšŒ */
+	/** °Ô½ÃÆÇ - ¸ñ·Ï Á¶È¸  */
 	@RequestMapping(value = "/getBoardList")
 	@ResponseBody
 
@@ -37,14 +37,14 @@ public class BoardController {
  
         return boardDtoList;
 	}
-	/** ê²Œì‹œíŒ - ìƒì„¸ í˜ì´ì§€ ì´ë™ */
+	/** °Ô½ÃÆÇ - »ó¼¼ ÆäÀÌÁö ÀÌµ¿ */
     @RequestMapping( value = "/recruitNoticeView")
-    public String boardDetail(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public String recruitNoticeView(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "recruit/recruitNoticeView";
     }    
     
-    /** ê²Œì‹œíŒ - ìƒì„¸ ì¡°íšŒ  */
+    /** °Ô½ÃÆÇ - »ó¼¼ Á¶È¸  */
     @RequestMapping(value = "/getBoardDetail")
     @ResponseBody
     public BoardDto getBoardDetail(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
@@ -54,14 +54,14 @@ public class BoardController {
         return boardDto;
     }
     
-    /** ê²Œì‹œíŒ - ì‘ì„± í˜ì´ì§€ ì´ë™ */
+    /** °Ô½ÃÆÇ - ÀÛ¼º ÆäÀÌÁö ÀÌµ¿ */
     @RequestMapping( value = "/recruitNoticeEdit")
     public String boardWrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "recruit/recruitNoticeEdit";
     }
     
-    /** ê²Œì‹œíŒ - ë“±ë¡ */
+    /** °Ô½ÃÆÇ - µî·Ï */
     @RequestMapping( value = "/insertBoard")
     @ResponseBody
     public BoardDto insertBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
@@ -71,7 +71,7 @@ public class BoardController {
         return boardDto;
     }
     
-    /** ê²Œì‹œíŒ - ì‚­ì œ */
+    /** °Ô½ÃÆÇ - »èÁ¦ */
     @RequestMapping( value = "/deleteBoard")
     @ResponseBody
     public BoardDto deleteBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
@@ -81,14 +81,14 @@ public class BoardController {
         return boardDto;
     }
     
-    /** ê²Œì‹œíŒ - ìˆ˜ì • í˜ì´ì§€ ì´ë™ */
+    /** °Ô½ÃÆÇ - ¼öÁ¤ ÆäÀÌÁö ÀÌµ¿ */
     /*@RequestMapping( value = "/boardUpdate")
     public String boardUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "board/boardUpdate";
     }*/
     
-    /** ê²Œì‹œíŒ - ìˆ˜ì • */
+    /** °Ô½ÃÆÇ - ¼öÁ¤ */
    /* @RequestMapping( value = "/updateBoard")
     @ResponseBody
     public BoardDto updateBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{

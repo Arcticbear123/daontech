@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -14,6 +16,126 @@
 	<script src="js/jquery.min.js"></script>		
 
 </head>
+
+<%    
+    String boardno = request.getParameter("boardno");        
+%>
+ 
+<c:set var="boardno" value="<%=boardno%>"/> <!-- 게시글 번호 -->
+ 
+<!-- 공통 CSS -->
+<link rel="stylesheet" type="text/css" href="/css/common/common.css"/>
+ 
+<!-- 공통 JavaScript -->
+<script type="text/javascript" src="/js/common/jquery.js"></script>
+<script type="text/javascript">
+		$(document).ready(function(){        
+		    getBoardDetail();        
+		});
+		
+		/** 게시판 - 목록 페이지 이동 */
+		function goBoardList(){                
+		    location.href = "/recruit/recruitNotice";
+		}
+		
+		/** 게시판 - 수정 페이지 이동 */
+		/**function goBoardUpdate(){
+		    
+		    var boardSeq = $("#board_no").val();
+		    
+		    location.href = "/recruit/boardUpdate?boardno="+ boardno;
+		}*/
+		
+		/** 게시판 - 상세 조회  */
+	    function getBoardDetail(boardno){
+	        
+	        var boardSeq = $("#board_no").val();
+	 
+	        if(boardSeq != ""){
+	            
+	            $.ajax({    
+	                
+	                url        : "/recruit/getBoardDetail",
+	                data    : $("#boardForm").serialize(),
+	                dataType: "JSON",
+	                cache   : false,
+	                async   : true,
+	                type    : "POST",    
+	                success : function(obj) {
+	                    getBoardDetailCallback(obj);                
+	                },           
+	                error     : function(xhr, status, error) {}
+	                
+	             });
+	        } else {
+	            alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
+	        }            
+	    }
+		 /** 게시판 - 상세 조회  콜백 함수 */
+	    function getBoardDetailCallback(obj){
+	        
+	        var str = "";
+	        
+	        if(obj != null){                                
+	                            
+	            var boardno        = obj.board_no; 
+	            var boardtitle     = obj.board_title; 
+	            var boardContent   = obj.board_content; 
+	            var regdate		   = obj.reg_date;
+	            var boardwriter    = obj.board_writer;
+	                    
+	            $("#board_title").val(boardSubject);            
+	            $("#board_content").val(boardContent);
+	            
+	        } else {
+	            
+	            alert("등록된 글이 존재하지 않습니다.");
+	            return;
+	        }        
+	    }
+		 
+	    /** 게시판 - 삭제  */
+	    function deleteBoard(){
+	 
+	        var boardSeq = $("#board_no").val();
+	        
+	        var yn = confirm("게시글을 삭제하시겠습니까?");        
+	        if(yn){
+	            
+	            $.ajax({    
+	                
+	                url        : "/recruit/deleteBoard",
+	                data    : $("#boardForm").serialize(),
+	                dataType: "JSON",
+	                cache   : false,
+	                async   : true,
+	                type    : "POST",    
+	                success : function(obj) {
+	                    deleteBoardCallback(obj);                
+	                },           
+	                error     : function(xhr, status, error) {}
+	                
+	             });
+	        }        
+	    }
+	    
+	    /** 게시판 - 삭제 콜백 함수 */
+	    function deleteBoardCallback(obj){
+	    
+	        if(obj != null){        
+	            
+	            var result = obj.result;
+	            
+	            if(result == "SUCCESS"){                
+	                alert("게시글 삭제를 성공하였습니다.");                
+	                goBoardList();                
+	            } else {                
+	                alert("게시글 삭제를 실패하였습니다.");    
+	                return;
+	            }
+	        }
+	    }
+</script>
 <body>
 	<!-- Global Navigation Bar -->
 	<jsp:include flush="false" page="../common/gnb.jsp" />
@@ -31,15 +153,15 @@
 		<div class="content">
 			<span class="content-header">채용공고</span>
 			<div class="content-body">
-			
+						<form id="boardForm" name="boardForm">
 				<div class="recruitNoticeView">
 					<div class="viewHeader">
-						<span class="viewTitle">2019년 3차 다온기술 채용공고</span>
-						<span class="viewDate">2020.03.29</span>
+						<span id = "board_title" class="viewTitle"></span>
+						<span id = "reg_date" class="viewDate"></span>
 					</div>
 					<div class="viewBody">
-						<span class="viewContent">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id risus vitae arcu tincidunt vehicula. Duis placerat massa nec risus fermentum pulvinar. Nam pulvinar tristique justo in varius. Vestibulum sit amet ligula gravida, posuere tellus auctor, maximus purus. Nam nec diam fringilla erat lacinia posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec sed sapien nec arcu convallis commodo id nec nisl. Nullam luctus nunc a vulputate gravida. Donec dui elit, auctor vel suscipit eget, auctor at ante.
+						<span id = "board_content" class="viewContent">
+							
 						</span>
 					</div>
 					<div class="viewFooter">						
@@ -52,8 +174,10 @@
 							<a href="#">다온기술 회사소개서.pptx</a>
 						</div>
 					</div>
+					</form>
 					<div class="viewBtnList">
 						<button class="normalBtn" onclick="goBack()">목 록</button>
+						<button type="button" class="btn black" onclick="javascript:deleteBoard();">삭제</button>
 						<button class="normalBtn" onclick="goTop()">TOP</button>
 					</div>
 				</div>	

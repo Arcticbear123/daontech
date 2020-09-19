@@ -13,7 +13,7 @@
     });
     
     /** 게시판 - 상세 페이지 이동 */
-    function goBoardDetail(boardSeq){                
+    function goBoardDetail(boardno){                
         location.href = "/recruit/recruitNoticeView?boardno="+ boardno;
     }
     
@@ -58,10 +58,9 @@
                 var boardwriter    = list[a].board_writer; 
                 
                 str += "<tr>";
-                str += "<td>" + boardno +"/td";
+                str += "<td>" + boardno +"</td>";
                 str += "<td onclick='javascript:goBoardDetail("+ boardno +");' style='cursor:Pointer'>"+ boardtitle +"</td>";
-                str += "<td>"+ boardtitle +"</td>";
-                str += "<td>"+ regdate +"</td>";    
+                str += "<td>"+ regdate +"</td>"; 
                 str += "<td>"+ boardwriter +"</td>";
                 str += "</tr>";
                 
@@ -102,7 +101,7 @@
 </div>
 
 <script>
-$('.recruitTable tr').not(':first').click(function(){
+$('.recruitTable tbody').not(':first').click(function(){
 	location.href = "recruitNoticeView";
 });
 
