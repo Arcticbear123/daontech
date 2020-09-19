@@ -1,0 +1,68 @@
+#supportBg{
+	background-image:url('../image/support.jpg');
+}
+
+/*문의사항 시작*/
+
+.inqueryBtn{
+	position:absolute;
+	right:140px;top:-45px;
+}
+.newsBtn{
+	position:absolute;
+	right:140px;top:-45px;
+}
+.promotionBtn{
+	position:absolute;
+	right:140px;top:-45px;
+}
+
+.supportInqueryEdit{
+	width:900px;margin:0 auto;	
+	padding:15px;
+}
+.inqueryEdit-btnArea{
+	width:100%;
+	display:flex;align-items:center;
+	justify-content:flex-end;
+}
+
+.supportNewsEdit{
+	width:900px;margin:0 auto;	
+	padding:15px;
+}
+.newsEdit-btnArea{
+	width:100%;
+	display:flex;align-items:center;
+	justify-content:flex-end;
+}
+
+.supportPromotionEdit{
+	width:900px;margin:0 auto;	
+	padding:15px;
+}
+.promotionEdit-btnArea{
+	width:100%;
+	display:flex;align-items:center;
+	justify-content:flex-end;
+}
+
+.inqueryViewFile{
+	width:900px;height:40px;border-radius:3px;
+	margin:0 auto 10px auto;padding:5px 10px;
+	border:1px solid #d0d3db;font-size:14px;
+	display:flex;align-items:center;
+}
+.newsViewFile{
+	width:900px;height:40px;border-radius:3px;
+	margin:0 auto 10px auto;padding:5px 10px;
+	border:1px solid #d0d3db;font-size:14px;
+	display:flex;align-items:center;
+}
+.promotionViewFile{
+	width:900px;height:40px;border-radius:3px;
+	margin:0 auto 10px auto;padding:5px 10px;
+	border:1px solid #d0d3db;font-size:14px;
+	display:flex;align-items:center;
+}
+/*문의사항 끝*/

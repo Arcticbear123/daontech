@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.mycompany.daon.boardmapper">
+	<select id = "getBoardList" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
+		SELECT BOARD_NO, BOARD_TITLE, REG_DATE, BOARD_WRITER
+			from tb_recruit_board
+	</select>
+	
+	<select id="getBoardDetail" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
+    
+        SELECT *
+        FROM tb_recruit_board
+        WHERE BOARD_NO = #{board_no}
+    </select>
+	
+	 <insert id="insertBoard" parameterType="com.mycompany.daon.BoardForm">
+    
+        INSERT 
+        INTO tb_recruit_board 
+        (
+			BOARD_TITLE,
+			BOARD_CONTENT,
+			REG_DATE
+        ) 
+        VALUES 
+        (
+            , #{board_title}
+            , #{board_content}
+            , NOW() 
+        )
+    
+    </insert>
+    
+    <delete id="deleteBoard" parameterType="com.mycompany.daon.BoardForm">
+    
+        DELETE 
+        FROM tb_recruit_board 
+        WHERE BOARD_NO = #{board_no}
+    
+    </delete>
+    
+    <delete id="updateBoard" parameterType="com.mycompany.daon.BoardForm">
+    
+        UPDATE tb_recruit_board
+           SET BOARD_TITLE = #{board_title}
+             , BOARD_CONTENT = #{board_content}
+             , REG_DATE = NOW()
+         WHERE BOARD_NO = #{board_no}
+    
+    </delete>
+	
+</mapper>

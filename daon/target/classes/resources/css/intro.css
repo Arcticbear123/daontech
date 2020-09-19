@@ -1,0 +1,229 @@
+@charset "UTF-8";
+#introBg{
+	background-image:url('../image/intro1.jpg');
+}
+/*���몴�씤�궗留� �떆�옉*/
+.greeting-content{
+	width:1000px;margin:0 auto;
+}
+.greeting-header{
+	font-family: 'S-CoreDream-4Regular';
+	font-size:25px;margin-bottom:50px;
+	display:inline-flex;	
+}
+.greeting-header > i{
+	font-size:15px;opacity:0.25;
+	margin:0 5px;
+}
+.greeting-top{
+	font-family: 'S-CoreDream-4Regular';
+	font-size:20px;margin-bottom:30px;
+}
+.greeting-context{
+	font-family: 'S-CoreDream-4Regular';
+	font-size:16px;width:900px;margin:0 auto;
+	margin-bottom:50px;
+	-webkit-animation: fade-in 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: fade-in 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;	        
+}
+.greeting-sign{
+	padding-right:50px;
+	display:flex;align-items:center;justify-content:flex-end;
+}
+/*���몴�씤�궗留� �걹*/
+
+/*�쉶�궗�뿰�쁺 �떆�옉*/
+.history-content{
+	width:1000px;min-height:800px;
+	margin:0 auto;position:relative;
+	margin-bottom:20px;padding-top:50px;
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.history-content:after{
+	content:'';position:absolute;
+	width:50%;height:100%;
+	top:0;left:0;border-right:4px solid #89B4DF;
+}
+.history-item{
+	width:calc(50% - 70px);clear:both;
+	float:left;text-align:right;
+	font-family: 'S-CoreDream-4Regular';
+	box-shadow:2px 3px 8px rgba(0, 0, 0, 0.1);
+	border-radius:3px;margin-bottom:40px;
+}
+.history-item:nth-child(2n){
+	float:right;text-align:left;	
+}
+.history-title{
+	font-size:32px;position:relative;
+	font-family: 'S-CoreDream-4Regular';
+	float:right;background:#459BD4;color:#fff;
+	width:100%;padding:10px 20px 10px 0;
+	font-weight:bold;border-radius:3px 3px 0 0;	
+}
+.history-title:before{
+	content:'';position:absolute;
+	width:18px;height:18px;border:4px solid #89B4DF;
+	background:#fff;border-radius:100%;
+	top:25%;right:-77px;z-index:10;
+}
+.oddHistory-title{
+	float:left;padding:10px 0 10px 20px;
+}
+.oddHistory-title:before{
+	left:-81px;
+}
+.history-text{
+	font-family: 'S-CoreDream-4Regular';font-size:22px;
+	float:right;clear:both;border:1px solid #dee3eb;
+	border-top:none;width:100%;padding:20px;
+	border-radius:0 0 3px 3px;position:relative;
+}
+.oddHistory-text{
+	float:left;
+}
+.history-text:not(.oddHistory-text):before{
+	content:'';position:absolute;
+	right:-15px;top:-50px;
+	width: 0;height: 0;
+	border-style: solid;
+	border-width: 10px 0 10px 15px;
+	border-color: transparent transparent transparent #459BD4;	
+}
+.oddHistory-text:before{
+	content:'';position:absolute;
+	left:-15px;top:-50px;
+	width: 0;height: 0;
+	border-style: solid;
+	border-width: 10px 15px 10px 0;
+	border-color: transparent #459BD4 transparent transparent;
+	
+}
+/*�쉶�궗�뿰�쁺 �걹*/
+
+/*議곗쭅�룄 �떆�옉*/
+.organ-content{
+	width:1000px;margin:0 auto;	
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.organ-box{
+	width:250px;height:50px;color:#fff;
+	display:flex;align-items:center;justify-content:center;
+	border-radius:3px;
+	font-family: 'S-CoreDream-4Regular';
+	font-size:18px;font-weight:bold;
+}
+.organ-line{
+	width:1px;height:40px;
+	background:#d0d3db;
+}
+.organ-vertical{
+	width:750px;height:1px;
+	background:#d0d3db;margin:0 auto;
+}
+.organ-lineHolder{
+	display:flex;align-items:center;justify-content:space-between;
+	width:750px;margin:0 auto;
+}
+.organ-boxHolder{
+	display:flex;align-items:center;justify-content:space-between;
+	width:1000px;margin:0 auto;	
+	
+    
+}
+.organ-box2{
+	width:250px;font-size:16px;
+	border:1px solid #d0d3db;border-radius:3px;
+}
+.organ-boxHeader{
+	width:100%;height:50px;color:#fff;
+	display:flex;align-items:center;justify-content:center;
+	border-bottom:1px solid transparent;
+	font-family: 'S-CoreDream-4Regular';
+	font-size:18px;font-weight:bold;
+}
+.organ-boxBody{
+	width:100%;
+	display:flex;flex-direction:column;	
+}
+.organ-boxBody > span{
+	width:100%;height:40px;
+	display:flex;align-items:center;justify-content:flex-start;
+	font-family: 'S-CoreDream-4Regular';
+	font-size:14px;
+}
+.organ-boxBody > span:before{
+	content:'';
+	width:4px;height:4px;display:inline-block;
+	background:#EFA234;margin:0 10px;
+}
+/*議곗쭅�룄 �걹*/
+
+/*CI �떆�옉*/
+.ci-introduce{
+	width:900px;margin:0 auto 80px auto;
+	font-size:20px;
+	line-height:1.7;
+}
+.ci-introduce i{
+	font-size:15px;opacity:0.25;margin:0 5px;
+}
+.ci-introduceChild1{	
+	-webkit-animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.ci-introduceChild2{	
+	-webkit-animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        	animation-delay:0.8s;
+}
+.ci-logo{
+	width:1100px;margin:0 auto;
+	display:flex;justify-content:space-around;
+	border-top:1px solid #dee3eb;
+	padding-top:80px;padding-bottom:100px;
+}
+.ci-imageHolder{
+	width:450px;height:220px;border:1px solid #dee3eb;
+	background-image:url('../image/checkPattern.png');
+	display:flex;align-items:center;justify-content:center;
+	margin-bottom:15px;
+}
+.ci-imageHolder > img{
+	width:100%;height:auto;
+	max-width:100%;max-height:100%;
+}
+.downloadLogoBtn{
+	width:450px;height:50px;border:none;
+	background:#459BD4;color:#fff;
+	font-family: 'S-CoreDream-4Regular';cursor:pointer;	
+}
+.downloadLogoBtn:hover{
+	background:#2a7fb7;
+}
+/*CI �걹*/
+
+/*李얠븘�삤�떆�뒗湲� �떆�옉*/
+.mapAddress{
+	font-family: 'S-CoreDream-4Regular';
+	font-size:18px;margin:0 auto 30px auto;
+	border:8px solid #f1f1f1;
+	padding:20px 40px;display:inline-block;
+	-webkit-animation: slide-top 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.mapHelp{
+	width:800px;margin:5px auto;
+	color:#999;font-size:12px;text-align:right;
+	padding-right:20px;padding-bottom:100px;	
+}
+.mapHelp > span{
+	font-family: 'S-CoreDream-4Regular';
+	padding-top:10px;
+}
+.mapHelp > i{
+	font-size:14px;margin-left:5px;
+}
+/*李얠븘�삤�떆�뒗湲� �걹*/

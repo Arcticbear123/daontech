@@ -1,0 +1,216 @@
+#businessBg{
+	background-image:url('../image/business.jpg');
+}
+/*사업분야 개요 start*/
+.business-outline{
+	border-bottom:1px solid #dee3eb;
+	padding-bottom:100px;
+}
+.business-outlineLabel{
+	font-family: 'S-CoreDream-4Regular';font-size:40px;
+	font-weight:bold;
+}
+.business-outlineIcon{
+	margin:0 auto;font-size:40px;
+}
+.business-outlineText{
+	font-family: 'S-CoreDream-4Regular';font-size:18px;
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    line-height:2;
+}
+.business-content{
+	padding-top:100px;
+}
+/*사업분야 개요 end*/
+
+/*개발운영부문 start*/
+.programAniLeft{
+	-webkit-animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.programAniRight{
+	-webkit-animation: slide-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.programItem{
+	display:flex;align-items:center;
+	justify-content:space-around;
+	margin-bottom:100px;
+}
+.programLeft{
+	width:500px;height:340px;	
+	-webkit-animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.programRight{
+	width:500px;height:340px;
+	display:flex;flex-direction:column;
+	align-items:flex-start;justify-content:center;	
+	-webkit-animation: slide-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.programHeader{
+	background:#EFA234;color:#fff;font-size:20px;
+	font-weight:bold;height:50px;
+	display:flex;align-items:center;
+	padding:0px 10px;
+}
+.pghIcon{
+	background:#fff;width:5px;height:25px;
+	margin-right:20px;
+}
+.programBody{
+	border:1px solid #dee3eb;width:100%;height:290px;
+	padding:20px;
+}
+.programImg{
+	width:460px;height:250px;
+}
+.programText-main{
+	font-family: 'S-CoreDream-4Regular';font-size:20px;
+	font-weight:bold;white-space:nowrap;margin-bottom:10px;
+	text-align:left;
+}
+.programText-sub{
+	font-family: 'S-CoreDream-4Regular';font-size:16px;
+	white-space:nowrap;padding-left:25px;
+	display:flex;align-items:center;margin-bottom:10px;
+}
+.programText-sub:before{
+	content:'';
+	width:6px;height:6px;display:inline-block;
+	background:#EFA234;margin-right:10px;
+}
+/*개발운영부문 end*/
+
+/*라이브러리부문 start*/
+.libraryItem{
+	width:1280px;height:500px;
+	box-shadow:0 3px 6px 0 rgba(0, 0, 0, 0.4);
+	display:flex;margin-bottom:100px;	
+	-webkit-animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.libraryLeft{
+	width:500px;height:100%;
+}
+.libraryRight{
+	width:780px;height:100%;padding:40px;
+	display:flex;flex-direction:column;
+	align-items:flex-start;
+}
+.library-textLabel{
+	display:flex;flex-direction:column;align-items:flex-start;
+	margin-bottom:50px;
+}
+.library-textLabelEng{
+	font-family: 'S-CoreDream-4Regular';font-size:18px;
+	color:#459BD4;
+}
+.library-textLabelKor{
+	font-family: 'S-CoreDream-4Regular';font-size:30px;
+	font-weight:bold;
+}
+.library-textMain{
+	font-family: 'S-CoreDream-4Regular';font-size:20px;
+	font-weight:bold;white-space:nowrap;margin-bottom:10px;
+	text-align:left;padding-left:20px;
+}
+.library-textSub{
+	font-family: 'S-CoreDream-4Regular';font-size:16px;
+	white-space:nowrap;padding-left:45px;
+	display:flex;align-items:center;margin-bottom:10px;
+}
+.library-textSub:before{
+	content:'';
+	width:6px;height:6px;display:inline-block;
+	background:#EFA234;margin-right:10px;
+}
+/*라이브러리부문 end*/
+
+/*탱크검사부문 start*/
+.tankList{
+	display:flex;align-items:center;
+	justify-content:space-around;
+	margin-bottom:50px;
+}
+.tankArrowIcon{
+	font-size:35px;color:#68B13F;
+	-webkit-animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.tankArrowIcon2{
+	font-size:35px;color:#68B13F;
+	margin:0 auto 50px auto;
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.tankTask{
+	width:500px;height:340px;
+}
+.tankTask-header{
+	background:#68B13F;color:#fff;font-size:20px;
+	font-weight:bold;height:50px;
+	display:flex;align-items:center;
+	padding:0px 10px;
+}
+.tankTask-body{
+	border:1px solid #dee3eb;width:100%;height:290px;
+	padding:15px;
+	font-family: 'S-CoreDream-4Regular';
+}
+.tankTask-textMain{
+	font-family: 'S-CoreDream-4Regular';font-size:16px;
+	font-weight:bold;margin-bottom:30px;
+	text-align:left;
+}
+.tankTask-textSub{
+	font-family: 'S-CoreDream-4Regular';font-size:14px;
+	padding-left:15px;text-align:left;margin-bottom:10px;
+	display:flex;align-items:center;
+}
+.tankTask-textSub:before{
+	content:'';
+	width:6px;height:6px;display:inline-block;
+	background:#68B13F;margin-right:10px;
+}
+.tankResult{
+	width:500px;height:340px;
+	display:flex;align-items:center;justify-content:space-around;
+	flex-direction:column;
+	-webkit-animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation-delay:0.5s;
+}
+.tankResult-item{
+	width:100%;height:110px;
+	padding:20px 40px;border:8px solid #f1f1f1;
+	font-family: 'S-CoreDream-4Regular';font-size:20px;
+	display:flex;align-items:center;justify-content:center;
+}
+.tankTarget{
+	width:1200px;margin:0 auto;
+	display:flex;flex-wrap:wrap;justify-content:space-around;
+}
+.tankImgHolder{
+	width:350px;display:flex;
+	margin-bottom:50px;position:relative;
+	overflow:hidden;
+}
+.tankImgTitle{
+	width:100%;height:50px;background:rgba(0, 0, 0, 0.5);
+	color:#fff;font-weight:bold;font-size:16px;
+	position:absolute;left:0;bottom:0;
+	align-items:center;justify-content:center;
+	display:none;pointer-events:none;	
+}
+.tankImg{
+	max-width:100%;width:100%;height:auto;cursor:pointer;
+}
+.tankImg:hover ~ .tankImgTitle{
+	display:flex;
+	-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+/*탱크검사부문 end*/
