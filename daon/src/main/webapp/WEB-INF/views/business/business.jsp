@@ -12,7 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/business.css">
 	<script src="js/jquery.min.js"></script>		
-
+	<script src="js/aos.js"></script>		
+	<link rel="stylesheet" type="text/css" href="css/aos.css">
 </head>
 <body>
 	<!-- Global Navigation Bar -->
@@ -59,7 +60,9 @@
 		var cateNum = getParameterByName('cate');		
 		$('.breadCrumb-btn').eq(cateNum).addClass('breadCrumb-on');		//최초 페이지이동시 BreadCrumb 디자인 변경
 		$('.content').eq(cateNum).show();
+		AOS.init();
 	});
+	
 	</script>
 </body>
 </html>
