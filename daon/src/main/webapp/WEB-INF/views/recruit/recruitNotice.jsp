@@ -14,7 +14,7 @@
     
     /** 게시판 - 상세 페이지 이동 */
     function goBoardDetail(boardno){                
-        location.href = "/recruit/recruitNoticeView?boardno="+ boardno;
+        location.href = "recruit/recruitNoticeView?boardno="+ boardno;
     }
     
     /** 게시판 - 작성 페이지 이동 */

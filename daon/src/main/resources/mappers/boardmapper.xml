@@ -4,7 +4,11 @@
 
 <mapper namespace="com.mycompany.daon.boardmapper">
 	<select id = "getBoardList" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
-		SELECT BOARD_NO, BOARD_TITLE, REG_DATE, BOARD_WRITER
+		SELECT 
+		 BOARD_NO, 
+		 BOARD_TITLE,
+		 CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS REG_DATE,
+		 BOARD_WRITER
 			from tb_recruit_board
 	</select>
 	
@@ -26,13 +30,15 @@
         (
 			BOARD_TITLE,
 			BOARD_CONTENT,
-			REG_DATE
+			REG_DATE,
+			BOARD_WRITER
         ) 
         VALUES 
         (
             #{board_title}
             , #{board_content}
-            , NOW() 
+            , NOW()
+            , '관리자'
         )
     
     </insert>

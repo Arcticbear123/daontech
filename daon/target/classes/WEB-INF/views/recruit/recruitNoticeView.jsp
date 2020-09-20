@@ -22,19 +22,15 @@
 %>
  
 <c:set var="boardno" value="<%=boardno%>"/> <!-- 게시글 번호 -->
- 
-<!-- 공통 CSS -->
-<link rel="stylesheet" type="text/css" href="/css/common/common.css"/>
- 
-<!-- 공통 JavaScript -->
-<script type="text/javascript" src="/js/common/jquery.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
 <script type="text/javascript">
 		$(document).ready(function(){        
 		    getBoardDetail();        
 		});
 		
 		/** 게시판 - 목록 페이지 이동 */
-		function goBoardList(){                
+		function goBack(){                
 		    location.href = "/recruit/recruitNotice";
 		}
 		
@@ -49,9 +45,9 @@
 		/** 게시판 - 상세 조회  */
 	    function getBoardDetail(boardno){
 	        
-	        var boardSeq = $("#board_no").val();
+	        var boardno = $("#board_no").val();
 	 
-	        if(boardSeq != ""){
+	        if(boardno != ""){
 	            
 	            $.ajax({    
 	                
@@ -97,7 +93,7 @@
 	    /** 게시판 - 삭제  */
 	    function deleteBoard(){
 	 
-	        var boardSeq = $("#board_no").val();
+	        var boardno = $("#board_no").val();
 	        
 	        var yn = confirm("게시글을 삭제하시겠습니까?");        
 	        if(yn){
@@ -128,7 +124,7 @@
 	            
 	            if(result == "SUCCESS"){                
 	                alert("게시글 삭제를 성공하였습니다.");                
-	                goBoardList();                
+	                goBack();                
 	            } else {                
 	                alert("게시글 삭제를 실패하였습니다.");    
 	                return;
@@ -176,7 +172,7 @@
 					</div>
 					</form>
 					<div class="viewBtnList">
-						<button class="normalBtn" onclick="goBack()">목 록</button>
+						<button type="button" class="normalBtn" onclick="javascript:goBack()">목 록</button>
 						<button type="button" class="btn black" onclick="javascript:deleteBoard();">삭제</button>
 						<button class="normalBtn" onclick="goTop()">TOP</button>
 					</div>

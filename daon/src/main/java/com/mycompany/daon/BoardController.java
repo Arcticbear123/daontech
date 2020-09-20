@@ -42,7 +42,7 @@ public class BoardController {
     public String recruitNoticeView(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "recruit/recruitNoticeView";
-    }    
+    }  
     
     /** 게시판 - 상세 조회  */
     @RequestMapping(value = "/getBoardDetail")

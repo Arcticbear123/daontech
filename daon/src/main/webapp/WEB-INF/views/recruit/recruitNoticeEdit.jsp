@@ -1,6 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<script type="text/javascript">
+    
+    $(document).ready(function(){        
+        
+    });
+        
+    /** 게시판 - 목록 페이지 이동 */
+    /*function goBoardList(){                
+        location.href = "/recruit/recruitNotice";
+    }*/
+    
+    /** 게시판 - 작성  */
+    function insertBoard(){
+ 
+        var boardtitle = $("#board_title").val();
+        var boardContent = $("#board_content").val();
+            
+        if (boardtitle == ""){            
+            alert("제목을 입력해주세요.");
+            $("#board_title").focus();
+            return;
+        }
+        
+        if (boardContent == ""){            
+            alert("내용을 입력해주세요.");
+            $("#board_content").focus();
+            return;
+        }
+        
+        var yn = confirm("게시글을 등록하시겠습니까?");        
+        if(yn){
+                
+            $.ajax({    
+                
+                url        : "/recruit/insertBoard",
+                data    : $("#boardForm").serialize(),
+                dataType: "JSON",
+                cache   : false,
+                async   : true,
+                type    : "POST",    
+                success : function(obj) {
+                    insertBoardCallback(obj);                
+                },           
+                error     : function(xhr, status, error) {}
+                
+            });
+        }
+    }
+    
+    /** 게시판 - 작성 콜백 함수 */
+    function insertBoardCallback(obj){
+    
+        if(obj != null){        
+            
+            var result = obj.result;
+            
+            if(result == "SUCCESS"){                
+                alert("게시글 등록을 성공하였습니다.");                
+                goBack();                
+            } else {                
+                alert("게시글 등록을 실패하였습니다.");    
+                return;
+            }
+        }
+    }
+    
+</script>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -14,83 +82,51 @@
 	<script src="js/jquery.min.js"></script>		
 
 </head>
-
-<!-- 공통 CSS -->
-<link rel="stylesheet" type="text/css" href="/css/common/common.css"/>
-
-<!-- 공통 JavaScript -->
-<script type="text/javascript" src="/js/common/jquery.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function(){        
-    
-});
-    
-/** 게시판 - 목록 페이지 이동 */
-function goBoardList(){                
-    location.href = "/recruit/recruitNotice";
-}
-
-/** 게시판 - 작성  */
-function insertBoard(){
-
-    var boardtitle = $("#board_title").val();
-    var boardContent = $("#board_content").val();
-        
-    if (boardtitle == ""){            
-        alert("제목을 입력해주세요.");
-        $("#board_title").focus();
-        return;
-    }
-    
-    if (boardContent == ""){            
-        alert("내용을 입력해주세요.");
-        $("#board_content").focus();
-        return;
-    }
-    
-    var yn = confirm("게시글을 등록하시겠습니까?");        
-    if(yn){
-            
-        $.ajax({    
-            
-            url        : "/recruit/insertBoard",
-            data    : $("#boardForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
-            type    : "POST",    
-            success : function(obj) {
-                insertBoardCallback(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-            
-        });
-    }
-}
-
-/** 게시판 - 작성 콜백 함수 */
-function insertBoardCallback(obj){
-
-    if(obj != null){        
-        
-        var result = obj.result;
-        
-        if(result == "SUCCESS"){                
-            alert("게시글 등록을 성공하였습니다.");                
-            goBoardList();                 
-        } else {                
-            alert("게시글 등록을 실패하였습니다.");    
-            return;
-        }
-    }
-}
-
-</script>
-    
 <body>
 	<!-- Global Navigation Bar -->
-	<jsp:include flush="false" page="../common/gnb.jsp" />
+	
+
+<div class="gnb">
+		<div class="logoArea">
+			<img class="logo" src="image/daonLogo.png" onclick="goMenu('HOME')">
+		</div>
+		<div class="gnbList">
+			<span class="gnbBtn" onclick="goMenu('INTRO', 0)">
+				회사소개
+				<span class="gnbDrop">
+					<span class="gnbDropMenu" onclick="goMenu('INTRO', 0)">대표인사말</span>
+					<span class="gnbDropMenu" onclick="goMenu('INTRO', 1)">회사연혁</span>
+					<span class="gnbDropMenu" onclick="goMenu('INTRO', 2)">조직도</span>					
+					<span class="gnbDropMenu" onclick="goMenu('INTRO', 3)">CI</span>
+					<span class="gnbDropMenu" onclick="goMenu('INTRO', 4)">찾아오는 길</span>
+				</span>
+			</span>
+			<span class="gnbBtn" onclick="goMenu('BUSINESS', 0)">
+				사업분야
+				<span class="gnbDrop">
+					<span class="gnbDropMenu" onclick="goMenu('BUSINESS', 0)">개발운영부문</span>
+					<span class="gnbDropMenu" onclick="goMenu('BUSINESS', 1)">라이브러리부문</span>
+					<span class="gnbDropMenu" onclick="goMenu('BUSINESS', 2)">탱크검사부문</span>					
+				</span>
+			</span>
+			<span class="gnbBtn" onclick="goMenu('RECRUIT', 0)">
+				채용정보
+				<span class="gnbDrop">
+					<span class="gnbDropMenu" onclick="goMenu('RECRUIT', 0)">인재상</span>
+					<span class="gnbDropMenu" onclick="goMenu('RECRUIT', 1)">채용안내</span>
+					<span class="gnbDropMenu" onclick="goMenu('RECRUIT', 2)">채용공고</span>					
+				</span>
+			</span>
+			<span class="gnbBtn" onclick="goMenu('SUPPORT', 0)">
+				고객지원
+				<span class="gnbDrop">
+					<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 0)">QnA</span>
+					<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 1)">NEWS</span>
+					<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 2)">홍보자료</span>					
+				</span>
+			</span>
+		</div>
+	</div>
 	
 	<div id="recruitBg" class="subBg">
 		<div class="subBg-text" style="background:none;"><span>채용정보</span></div>
@@ -106,17 +142,17 @@ function insertBoardCallback(obj){
 			<span class="content-header">채용공고</span>
 			<form id="boardForm" name="boardForm">
 			<div class="content-body">
-				<div class="recruitNoticeEdit">											`
-					<input id="board_title" name ="board_title" value = "" class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
-					<textarea id = "board_content" name = "board_content" class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
-				</form>
+				<div class="recruitNoticeEdit">											
+					<input id="board_title" name="board_title" value="" class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
+					<textarea id="board_content" name="board_content" class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
+					</form>
 					<div class="addFileInput" style="margin-bottom:10px;">
 						<i class="addFileIcon fas fa-folder-open"></i>
 						<button class="addFileButton">파일 선택</button>
 					</div>
 					<div class="recruitEdit-btnArea">
-						<button class="cancelBtn" onclick="javascript:goBoardList();" style="margin-right:10px;">취 소</button>
-						<button class="submitBtn" onclick="javascript:insertBoard();">작성완료</button>
+						<button class="cancelBtn" onclick="goBack()" style="margin-right:10px;">취 소</button>
+						<button type = "button" class="btn black" onclick = "javascript:insertBoard();" class="submitBtn">작성완료</button>
 					</div>
 				</div>				
 			</div>
@@ -152,4 +188,3 @@ function insertBoardCallback(obj){
 	</script>
 </body>
 </html>
-
