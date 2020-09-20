@@ -36,11 +36,11 @@ public class BoardDto {
         this.board_content = board_content;
     }
  
-    public String getIns_reg_date() {
+    public String getreg_date() {
         return reg_date;
     }
  
-    public void setIns_reg_date(String reg_date) {
+    public void setreg_date(String reg_date) {
         this.reg_date = reg_date;
     }
     

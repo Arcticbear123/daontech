@@ -36,11 +36,11 @@ public class BoardForm {
     }
  
  
-    public Date getIns_reg_date() {
+    public Date getreg_date() {
         return reg_date;
     }
  
-    public void setIns_reg_date(Date reg_date) {
+    public void setreg_date(Date reg_date) {
         this.reg_date = reg_date;
     }
     
