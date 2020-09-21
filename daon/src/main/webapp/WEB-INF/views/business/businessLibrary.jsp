@@ -16,16 +16,18 @@
 			<div class="business-outlineLabel">업무영역</div>
 			<div class="business-outlineIcon" style="margin-bottom:40px;"><i class="fal fa-ellipsis-v"></i></div>
 			<div class="libraryList">
-				<div class="libraryItem" style="display:none;">
+				<div class="libraryItem" data-aos="fade-right" data-aos-duration="1000">
 					<div class="libraryLeft">
-						
+						<div class="libraryImgHolder">
+							<img class="libraryImg"  src="image/standardModelImg.png"/>
+						</div>						
 					</div>
 					<div class="libraryRight">						
 						<div class="library-textLabel">
 							<div class="library-textLabelEng">Standard Library</div>
 							<div class="library-textLabelKor">표준 라이브러리 구축</div>
 						</div>						
-						<span class="library-textMain">JIS, ANSI, DIN 등 표준 배관 COMPONENT와 ANGLE, FB, CHANNEL, BOLT 등<br>철의장 COMPNONT를 3D 라이브러리로 구축</span>
+						<span class="library-textMain">JIS, ANSI, DIN 등 표준 배관 COMPONENT와 ANGLE, FB, CHANNEL,<br>BOLT 등 철의장 COMPNONT를 3D 라이브러리로 구축</span>
 						<span class="library-textSub">라이브러리 구축 작업 시 속성을 활용하여 필요한 정보를 함께 모델링</span>
 						<span class="library-textSub" style="margin-bottom:40px;">설계 작업 시 <span class="blue core">&nbsp;다양한 정보를 제공하고 정확성을 제시</span>하도록 지원</span>
 						<span class="library-textMain">주문/제작이 필요한 철의장품을 표준 3D 라이브러리로 구축하여 제공</span>
@@ -33,9 +35,11 @@
 					</div>
 				</div>
 				
-				<div class="libraryItem" style="display:none;">
+				<div class="libraryItem" data-aos="fade-right" data-aos-duration="1000">
 					<div class="libraryLeft">
-						
+						<div class="libraryImgHolder">
+							<img class="libraryImg" src="image/3DModelImg.png"/>
+						</div>
 					</div>
 					<div class="libraryRight">						
 						<div class="library-textLabel">
@@ -55,17 +59,7 @@
 		</div>
 	</div>
 </div>
-
+	
 <script>
-$(document).ready(function(){	
-	$(window).scroll(function(){			
-		if($(this).scrollTop() > 400){
-			$('.libraryItem').eq(0).show();
-		}
-		if($(this).scrollTop() > 1000){
-			$('.libraryItem').eq(1).show();
-		}		
-		
-	});
-});
+
 </script>

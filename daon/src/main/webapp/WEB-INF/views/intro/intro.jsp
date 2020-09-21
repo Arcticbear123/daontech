@@ -10,8 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
-	<link rel="stylesheet" type="text/css" href="css/intro.css">
-	<script src="js/jquery.min.js"></script>		
+	<link rel="stylesheet" type="text/css" href="css/intro.css">	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/aos.js"></script>		
+	<link rel="stylesheet" type="text/css" href="css/aos.css">
 
 </head>
 <body>
