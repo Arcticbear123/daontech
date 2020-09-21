@@ -59,5 +59,5 @@ public class BoardForm {
     public void setBoard_writer(String board_writer) {
         this.board_writer = board_writer;
     }
-
+ //¿À·ù¤Ì°³¤µ
 }
