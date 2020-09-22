@@ -18,30 +18,30 @@ public class BoardDao {
  
     private static final String NAMESPACE = "com.mycompany.daon.boardmapper";
  
-    /** °Ô½ÃÆÇ - ¸ñ·Ï Á¶È¸  */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½È¸  */
     public List<BoardDto> getBoardList(BoardForm boardForm) throws Exception {
  
         return sqlSession.selectList(NAMESPACE + ".getBoardList");
     }
     
-    /** °Ô½ÃÆÇ - »ó¼¼ Á¶È¸  */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ ï¿½ï¿½È¸  */
     public BoardDto getBoardDetail(BoardForm boardForm) throws Exception {
         
         return sqlSession.selectOne(NAMESPACE + ".getBoardDetail", boardForm);
     }
     
-    /** °Ô½ÃÆÇ - µî·Ï  */   
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½  */   
     public int insertBoard(BoardForm boardForm) throws Exception {
         return sqlSession.insert(NAMESPACE + ".insertBoard", boardForm);
     }
     
-    /** °Ô½ÃÆÇ - »èÁ¦  */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½  */
     public int deleteBoard(BoardForm boardForm) throws Exception {
         
         return sqlSession.delete(NAMESPACE + ".deleteBoard", boardForm);
     }
     
-    /** °Ô½ÃÆÇ - ¼öÁ¤  */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½  */
     /*public int updateBoard(BoardForm boardForm) throws Exception {
         
         return sqlSession.update(NAMESPACE + ".updateBoard", boardForm);

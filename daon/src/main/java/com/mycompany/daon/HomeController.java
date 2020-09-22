@@ -2,14 +2,24 @@ package com.mycompany.daon;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.mycompany.daon.BoardDto;
+import com.mycompany.daon.BoardForm;
+import com.mycompany.daon.BoardService;
 
 /**
  * Handles requests for the application home page.
@@ -18,6 +28,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private BoardService boardService;
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -78,33 +92,40 @@ public class HomeController {
 		return "business/business";
 	}
 	
+	//Recruit시작****************************/
+	
 	@RequestMapping(value = "/recruit", method = RequestMethod.GET)
-	public String recruit(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
+	public String recruit(HttpServletRequest request, HttpServletResponse response) throws Exception{	
 		
 		return "recruit/recruit";
-	}
+	}	
 	
-	@RequestMapping(value = "/recruitNoticeView", method = RequestMethod.GET)
-	public String recruitNoticeView(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "recruit/recruitNoticeView";
-	}
+    @RequestMapping( value = "/recruitNoticeView")
+    public String recruitNoticeView(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "recruit/recruitNoticeView";
+    } 
+	
+	@RequestMapping(value = "/getBoardList")
+	@ResponseBody
+	   public List<BoardDto> getBoardList(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
+		 
+        List<BoardDto> boardDtoList = boardService.getBoardList(boardForm);
+ 
+        return boardDtoList;
+	}	 
+    
+    @RequestMapping(value = "/getBoardDetail")
+    @ResponseBody
+    public BoardDto getBoardDetail(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
+ 
+        BoardDto boardDto = boardService.getBoardDetail(boardForm);
+ 
+        return boardDto;
+    }
+        
+    
+    
 	
 	@RequestMapping(value = "/recruitNoticeEdit", method = RequestMethod.GET)
 	public String recruitNoticeEdit(Locale locale, Model model) {
