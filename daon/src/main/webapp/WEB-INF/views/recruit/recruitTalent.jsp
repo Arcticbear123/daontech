@@ -18,5 +18,9 @@
 				<span class="talentText">상호 존중하고 배려하며 협력하는 인재</span>
 			</div>
 		</div>
+		<div class="recruitTalent-text">
+			기술력과 열정을 바탕으로 다양한 가치를 창출할 수 있는 인재<br>
+			다온기술이 지향하는 인재의 모습입니다.
+		</div>
 	</div>
 </div>

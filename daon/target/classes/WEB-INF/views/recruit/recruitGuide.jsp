@@ -18,7 +18,7 @@
 			</div>
 			<i class="fas fa-arrow-circle-right"></i>
 			<div class="guide guide4">
-				<span>4. 신체검사</span>
+				<span>4. 최종합격</span>
 			</div>
 		</div>
 		<div class="recruitGuide-text">
@@ -31,8 +31,8 @@
 			<div class="recruitGuide-textHalf">
 				<span class="recruitGuide-textLabel">※ 면접전형</span>
 				<span class="recruitGuide-textGray" style="margin-bottom:50px;">실무진 및 경영진 면접을 통해서 직무적합성, 기본 인성 등을 겸비한 우수 인재인지를 검증합니다.</span>
-				<span class="recruitGuide-textLabel">※ 신체검사</span>
-				<span class="recruitGuide-textGray">채용 건강검진을 통해 지원자의 건강 및 신체 이상 여부를 확인합니다.</span>
+				<span class="recruitGuide-textLabel">※ 최종합격</span>
+				<span class="recruitGuide-textGray">신체검사 후 최종합격자를 선정합니다.</span>
 			</div>
 		</div>
 	</div>

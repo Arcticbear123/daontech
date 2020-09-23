@@ -35,7 +35,7 @@
                 
             $.ajax({    
                 
-                url        : "/recruit/insertBoard",
+                url        : "/insertBoard",
                 data    : $("#boardForm").serialize(),
                 dataType: "JSON",
                 cache   : false,

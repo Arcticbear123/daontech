@@ -38,21 +38,17 @@
 	<div class="container">
 		<div class="content">
 			<span class="content-header">채용공고</span>
-			<div class="content-body">
-				
-				
+			<div class="content-body">			
 				<div class="recruitNoticeView">
-					<form id="boardForm" name="BoardForm">
-					<input type="hidden" id="boardno" name="boardno" value="${boardno}"/> <!-- 게시글 번호 -->
+					<form id="boardForm" name="boardForm">
+					<input type="hidden" id="board_no" name="board_no" value="${boardno}"/> <!-- 게시글 번호 -->				
 					<div class="viewHeader">
 						<span id = "board_title" class="viewTitle"></span>
 						<span id = "reg_date" class="viewDate"></span>
 					</div>
-					<div class="viewBody">
-						<span id = "board_content" class="viewContent">
-							
-						</span>
-					</div>
+					<textarea id="board_content" class="viewBody" style="resize:none;background:#fff;" disabled>
+						<!-- 게시글 내용이 들어감 -->
+					</textarea>
 					<div class="viewFooter">						
 						<div class="recruitViewFile">
 							<i class="addFileIcon fas fa-folder-open"></i>
@@ -65,8 +61,10 @@
 					</div>
 					</form>
 					<div class="viewBtnList">
-						<button type="button" class="normalBtn" onclick="javascript:goBack()">목 록</button>
-						<button type="button" class="btn black" onclick="javascript:deleteBoard();">삭제</button>
+						<div style="display:flex;align-items:center;">
+							<button type="button" class="normalBtn" onclick="javascript:goBack()" style="margin-right:10px;">목 록</button>
+							<button type="button" class="normalBtn" onclick="javascript:deleteBoard();">삭 제</button>
+						</div>						
 						<button class="normalBtn" onclick="goTop()">TOP</button>
 					</div>
 				</div>
@@ -101,6 +99,12 @@
 			$('.content').show();	//내용 항상 보이게		
 			
 			getBoardDetail();   //게시글 상세내용 조회     
+			
+			var data = '';
+			$.each( $('#boardForm').serializeArray(), function(key, val){
+			    data += ","+val['name']+":"+val['value'];
+			});
+			console.log( data.substr(1) );
 		});
 		
 		
@@ -116,8 +120,7 @@
 	    function getBoardDetail(boardno){	        
 	        var boardno = $("#boardno").val();
 	 		console.log(boardno);
-	        if(boardno != ""){
-	            
+	        if(boardno != ""){	            
 	            $.ajax({                  
 	                url     : "/getBoardDetail",
 	                data    : $("#boardForm").serialize(),
@@ -126,14 +129,11 @@
 	                async   : true,
 	                type    : "POST",    
 	                success : function(obj) {
-	                	alert('success');
 	                    getBoardDetailCallback(obj);                
 	                },           
 	                error     : function(xhr, status, error) {
-	                	alert("code = "+ xhr.status + " message = " + xhr.responseText + " error = " + error);
-	                	console.log($('#boardForm').val());
-                	}
-	                
+	                	alert("code = "+ xhr.status + " message = " + xhr.responseText + " error = " + error);	                	
+                	}	                
 	             });
 	        } else {
 	            alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
@@ -142,37 +142,31 @@
 		 /** 게시판 - 상세 조회  콜백 함수 */
 	    function getBoardDetailCallback(obj){
 	        console.log(obj);
-	        var str = "";
-	        
-	        if(obj != null){                                
-	                            
+	        var str = "";	        
+	        if(obj != null){
 	            var boardno        = obj.board_no; 
 	            var boardtitle     = obj.board_title; 
 	            var boardContent   = obj.board_content; 
 	            var regdate		   = obj.reg_date;
 	            var boardwriter    = obj.board_writer;
 	                    
-	            $("#board_title").val(boardSubject);            
+	            $("#board_title").text(boardtitle);            
 	            $("#board_content").val(boardContent);
+	            $('#reg_date').text(regdate);
 	            
-	        } else {
-	            
+	        } else {	            
 	            alert("등록된 글이 존재하지 않습니다.");
 	            return;
 	        }        
 	    }
 		 
 	    /** 게시판 - 삭제  */
-	    function deleteBoard(){
-	 
-	        var boardno = $("#board_no").val();
-	        
+	    function deleteBoard(){	 
+	        var boardno = $("#board_no").val();	        
 	        var yn = confirm("게시글을 삭제하시겠습니까?");        
-	        if(yn){
-	            
-	            $.ajax({    
-	                
-	                url        : "/recruit/deleteBoard",
+	        if(yn){	            
+	            $.ajax({
+	                url     : "/deleteBoard",
 	                data    : $("#boardForm").serialize(),
 	                dataType: "JSON",
 	                cache   : false,
@@ -181,19 +175,18 @@
 	                success : function(obj) {
 	                    deleteBoardCallback(obj);                
 	                },           
-	                error     : function(xhr, status, error) {}
+	                error     : function(xhr, status, error) {
+	                	alert("code = "+ xhr.status + " message = " + xhr.responseText + " error = " + error);
+	                }
 	                
 	             });
 	        }        
 	    }
 	    
 	    /** 게시판 - 삭제 콜백 함수 */
-	    function deleteBoardCallback(obj){
-	    
-	        if(obj != null){        
-	            
-	            var result = obj.result;
-	            
+	    function deleteBoardCallback(obj){	    
+	        if(obj != null){     	            
+	            var result = obj.result;	            
 	            if(result == "SUCCESS"){                
 	                alert("게시글 삭제를 성공하였습니다.");                
 	                goBack();                

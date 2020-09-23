@@ -208,7 +208,7 @@
 }
 .viewBody{
 	width:900px;min-height:300px;border-radius:3px;
-	margin:0 auto 10px auto;padding:5px;
+	margin:0 auto 10px auto;padding:5px;text-align:left;
 	border:1px solid #d0d3db;
 }
 .viewContent{

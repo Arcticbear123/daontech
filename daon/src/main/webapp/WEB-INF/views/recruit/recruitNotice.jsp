@@ -12,9 +12,7 @@
 				<th>등록일</th>
 				<th>글쓴이</th>
 			</tr>
-			<tbody id="recruitTableContent">
-            	<!-- 채용공고 리스트가 들어감 -->
-            </tbody>    			
+			   			
 		</table>
 		</form>
 		
@@ -67,7 +65,7 @@
             str += "<td>등록된 글이 존재하지 않습니다.</td>";
             str += "<tr>";
         }        
-        $("#recruitTableContent").html(str);
+        $(".recruitTable").append(str);
     }
     
     /*게시판 - 상세 페이지 이동 */
@@ -76,7 +74,7 @@
     }
     
     /*게시판 - 작성 페이지 이동 */
-    function goBoardWrite(){        
+    function goBoardWrite(mode){
         location.href = "/recruitNoticeEdit";
     }
  

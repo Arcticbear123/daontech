@@ -123,6 +123,42 @@ public class HomeController {
  
         return boardDto;
     }
+    
+    @RequestMapping( value = "/insertBoard")
+    @ResponseBody
+    public BoardDto insertBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
+        
+        BoardDto boardDto = boardService.insertBoard(boardForm);
+        
+        return boardDto;
+    }
+    
+    /** �Խ��� - ���� */
+    @RequestMapping( value = "/deleteBoard")
+    @ResponseBody
+    public BoardDto deleteBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
+        
+        BoardDto boardDto = boardService.deleteBoard(boardForm);
+        
+        return boardDto;
+    }
+    
+    /** �Խ��� - ���� ������ �̵� */
+    /*@RequestMapping( value = "/boardUpdate")
+    public String boardUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "board/boardUpdate";
+    }*/
+    
+    /** �Խ��� - ���� */
+   /* @RequestMapping( value = "/updateBoard")
+    @ResponseBody
+    public BoardDto updateBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
+        
+        BoardDto boardDto = boardService.updateBoard(boardForm);
+        
+        return boardDto;
+    }*/
         
     
     
