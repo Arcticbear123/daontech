@@ -29,6 +29,7 @@
 				<span class="sky bold">비즈니스 파트너</span>
 			</span>
 		</span>
+		<img class="mainBgImg" src="image/textBgPaper.jpeg"/>
 	</div>
 	
 	<div class="section1">
