@@ -206,6 +206,12 @@
 .viewDate{
 	color:#999;font-size:14px;
 }
+.viewDate:after{
+	content:' /\a';
+}
+.viewWriter{
+	color:#999;font-size:14px;
+}
 .viewBody{
 	width:900px;min-height:300px;border-radius:3px;
 	margin:0 auto 10px auto;padding:5px;text-align:left;
@@ -290,6 +296,7 @@
 .table{
 	width:1000px;margin:auto;
 	border-top:2px solid #666;
+	margin-bottom:20px;
 }
 .table tr:nth-child(2n){
 	background:#fbfbfb;

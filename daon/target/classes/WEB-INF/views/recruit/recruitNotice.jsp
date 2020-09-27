@@ -7,29 +7,34 @@
 		<form id = "boardForm" name="BoardForm">
 		<table class="table recruitTable">			
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>등록일</th>
-				<th>글쓴이</th>
-			</tr>
-			   			
+				<th style="width:10%;">번호</th>
+				<th style="width:55%;">제목</th>
+				<th style="width:20%;">등록일</th>
+				<th style="width:15%;">글쓴이</th>
+			</tr>			   			
 		</table>
 		</form>
+		<div id="recruitPaging" style="text-align:center;">
+			<jsp:include flush="false" page="../common/paging.jsp">
+				<jsp:param name="row" value="5"/>
+	    		<jsp:param name="maxPage" value="5"/>
+	    		<jsp:param name="target" value="recruitPaging"/>
+	    		<jsp:param name="fnList" value="getBoardList"/>
+	    		<jsp:param name="fnCount" value="getBoardCount"/>	    		
+			</jsp:include>
+		</div>
 		
 		<button type="button" class="submitBtn recruitBtn" onclick="goBoardWrite();">글쓰기</button>
 		
 	</div>
 </div>
 
-<script type="text/javascript">    
-    $(document).ready(function(){        
-        getBoardList();
-    });
-    
-    function getBoardList(){        
+<script type="text/javascript">  
+
+    function getBoardList(limit, num){        
         $.ajax({            
-            type	:"POST",
-            url		:"/getBoardList",
+            type	:"GET",            
+            url		:"/getBoardList?limit="+limit+"&num="+num,
             data    : $("#boardForm").serialize(),
             dataType:"JSON",
             cache   : false,
@@ -42,7 +47,8 @@
     }
     
 	function getBoardListCallback(obj){        
-        var list = obj;
+		$(".recruitTable tr:not(:first-child)").empty();
+		var list = obj;
         var listLen = obj.length;     
         var str = "";
         

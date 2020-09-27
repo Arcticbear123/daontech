@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/recruit.css">
+	<link rel="stylesheet" type="text/css" href="css/paging.css">
 	<script src="js/jquery.min.js"></script>		
 
 </head>

@@ -16,10 +16,15 @@ public class BoardService {
 	private BoardDao boardDao;
 	
 	/** �Խ��� - ��� ��ȸ */
-	public List<BoardDto> getBoardList(BoardForm boardForm) throws Exception{
+	public List<BoardDto> getBoardList(BoardForm boardForm, int limit, int num) throws Exception{
 		
-		return boardDao.getBoardList(boardForm);
+		return boardDao.getBoardList(boardForm, limit, num);
 	}
+	
+	public int getBoardCount() {
+    	return boardDao.getBoardCount();
+    }
+	
 	/** �Խ��� - �� ��ȸ */
     public BoardDto getBoardDetail(BoardForm boardForm) throws Exception {
  

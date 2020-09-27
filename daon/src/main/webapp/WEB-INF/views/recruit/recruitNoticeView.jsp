@@ -44,7 +44,10 @@
 					<input type="hidden" id="board_no" name="board_no" value="${boardno}"/> <!-- 게시글 번호 -->				
 					<div class="viewHeader">
 						<span id = "board_title" class="viewTitle"></span>
-						<span id = "reg_date" class="viewDate"></span>
+						<div>
+							<span id = "reg_date" class="viewDate"></span>
+							<span id = "board_writer" class="viewWriter"></span>
+						</div>						
 					</div>
 					<textarea id="board_content" class="viewBody" style="resize:none;background:#fff;" disabled>
 						<!-- 게시글 내용이 들어감 -->
@@ -153,6 +156,7 @@
 	            $("#board_title").text(boardtitle);            
 	            $("#board_content").val(boardContent);
 	            $('#reg_date').text(regdate);
+	            $("#board_writer").text(boardwriter);
 	            
 	        } else {	            
 	            alert("등록된 글이 존재하지 않습니다.");

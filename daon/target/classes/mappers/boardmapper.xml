@@ -13,6 +13,12 @@
 			order by board_no desc
 	</select>
 	
+	<select id = "getBoardCount" resultType="int">
+		SELECT 
+		 COUNT(*)
+			from tb_recruit_board
+	</select>
+	
 	<select id="getBoardDetail" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
     
         SELECT 

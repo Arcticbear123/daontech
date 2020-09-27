@@ -3,7 +3,8 @@ package com.mycompany.daon;
 import java.util.List;
 
 import javax.annotation.Resource;
- 
+
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
  
@@ -19,9 +20,15 @@ public class BoardDao {
     private static final String NAMESPACE = "com.mycompany.daon.boardmapper";
  
     /** �Խ��� - ��� ��ȸ  */
-    public List<BoardDto> getBoardList(BoardForm boardForm) throws Exception {
- 
-        return sqlSession.selectList(NAMESPACE + ".getBoardList");
+    public List<BoardDto> getBoardList(BoardForm boardForm, int limit, int num) throws Exception {
+    	
+    	RowBounds row = new RowBounds(limit , num);
+
+        return sqlSession.selectList(NAMESPACE + ".getBoardList", null, row);
+    }
+    
+    public int getBoardCount() {
+    	return sqlSession.selectOne(NAMESPACE + ".getBoardCount");
     }
     
     /** �Խ��� - �� ��ȸ  */

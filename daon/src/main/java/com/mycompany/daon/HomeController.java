@@ -104,78 +104,7 @@ public class HomeController {
     public String recruitNoticeView(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "recruit/recruitNoticeView";
-    } 
-	
-	@RequestMapping(value = "/getBoardList")
-	@ResponseBody
-	   public List<BoardDto> getBoardList(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
-		 
-        List<BoardDto> boardDtoList = boardService.getBoardList(boardForm);
- 
-        return boardDtoList;
-	}	 
-    
-    @RequestMapping(value = "/getBoardDetail")
-    @ResponseBody
-    public BoardDto getBoardDetail(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
- 
-        BoardDto boardDto = boardService.getBoardDetail(boardForm);
- 
-        return boardDto;
-    }
-    
-    @RequestMapping( value = "/insertBoard")
-    @ResponseBody
-    public BoardDto insertBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
-        
-        BoardDto boardDto = boardService.insertBoard(boardForm);
-        
-        return boardDto;
-    }
-    
-    /** �Խ��� - ���� */
-    @RequestMapping( value = "/deleteBoard")
-    @ResponseBody
-    public BoardDto deleteBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
-        
-        BoardDto boardDto = boardService.deleteBoard(boardForm);
-        
-        return boardDto;
-    }
-    
-    /** �Խ��� - ���� ������ �̵� */
-    /*@RequestMapping( value = "/boardUpdate")
-    public String boardUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        
-        return "board/boardUpdate";
-    }*/
-    
-    /** �Խ��� - ���� */
-   /* @RequestMapping( value = "/updateBoard")
-    @ResponseBody
-    public BoardDto updateBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
-        
-        BoardDto boardDto = boardService.updateBoard(boardForm);
-        
-        return boardDto;
-    }*/
-        
-    
-    
-	
-	@RequestMapping(value = "/recruitNoticeEdit", method = RequestMethod.GET)
-	public String recruitNoticeEdit(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "recruit/recruitNoticeEdit";
-	}
+    }	
 	
 	@RequestMapping(value = "/support", method = RequestMethod.GET)
 	public String support(Locale locale, Model model) {

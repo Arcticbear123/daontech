@@ -1,0 +1,23 @@
+.paging{
+	display:inline-flex;align-items:center;
+}
+.pagingIcon{
+	font-size:18px;
+	width:30px;height:30px;cursor:pointer;
+	border-top:1px solid #dee3eb;
+	border-bottom:1px solid #dee3eb;
+	border-left:1px solid #dee3eb;
+}
+.paging-goPrev{
+	border-radius:15px 0 0 15px;
+}
+.paging-goNext{
+	border-right:1px solid #dee3eb;
+	border-radius:0 15px 15px 0;
+}
+.paging-list{
+	display:flex;align-items:center;
+}
+.paging-now{
+	font-weight:bold;background:#459BD4;color:#fff;
+}
