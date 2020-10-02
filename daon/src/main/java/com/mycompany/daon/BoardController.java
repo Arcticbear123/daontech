@@ -131,7 +131,7 @@ public class BoardController {
         fileInfo.put("fileName", fileName);
         fileInfo.put("filePath", filePath);
      
-        return new ModelAndView("fileDownloadUtil", "fileInfo", fileInfo);
+        return new ModelAndView("FileDownloadUtil", "fileInfo", fileInfo);
     }
     
     /** �Խ��� - ���� ������ �̵� */

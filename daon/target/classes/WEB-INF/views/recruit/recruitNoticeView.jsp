@@ -219,7 +219,7 @@
 	    /** 게시판 - 첨부파일 다운로드 */
 	    function fileDownload(fileNameKey, fileName, filePath){
 	            
-	        location.href = "/board/fileDownload?fileNameKey="+fileNameKey+"&fileName="+fileName+"&filePath="+filePath;
+	        location.href = "/fileDownload?fileNameKey="+fileNameKey+"&fileName="+fileName+"&filePath="+filePath;
 	    }
 	</script>
 	
