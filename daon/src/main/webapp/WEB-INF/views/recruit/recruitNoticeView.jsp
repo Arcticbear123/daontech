@@ -13,7 +13,6 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/recruit.css">
-	<script type="text/javascript" src="/js/common/jquery.js"></script>
 	<script src="js/jquery.min.js"></script>	
 </head>
 
@@ -54,14 +53,7 @@
 						<!-- 게시글 내용이 들어감 -->
 					</textarea>
 					<div class="viewFooter">						
-						<div class="recruitViewFile">
-							<i class="addFileIcon fas fa-folder-open"></i>
-							<a href="#">입사지원서 양식.hwp</a>
-						</div>
-						<div class="recruitViewFile">
-							<i class="addFileIcon fas fa-folder-open"></i>
-							<a href="#">다온기술 회사소개서.pptx</a>
-						</div>
+						
 					</div>
 					</form>
 					<div class="viewBtnList">
@@ -171,6 +163,12 @@
 	                    var fileSize     = files[i].file_size;
 	                    
 	                    console.log("fileName : " + fileName);
+	                    
+	                    str += "<div class=\"recruitViewFile\">";
+	                    str += "<i class=\"addFileIcon fas fa-folder-open\"></i>";
+	                    str += "<a href=\"/fileDownload?fileNameKey=" + encodeURI(fileNameKey) + "&fileName=" + encodeURI(fileName) + "&filePath=" + encodeURI(filePath) + "\">" + fileName + "</a>";
+	                    console.log(str);
+	                    $('.viewFooter').append(str);
 	            	}
 	            }
 	            
