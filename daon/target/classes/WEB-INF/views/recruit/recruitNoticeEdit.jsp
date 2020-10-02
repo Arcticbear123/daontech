@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
 <script type="text/javascript">
     
     $(document).ready(function(){        
         
     });
-        
-    /** 게시판 - 목록 페이지 이동 */
-    /*function goBoardList(){                
-        location.href = "/recruit/recruitNotice";
-    }*/
     
     /** 게시판 - 작성  */
     function insertBoard(){
@@ -32,21 +29,26 @@
         
         var yn = confirm("게시글을 등록하시겠습니까?");        
         if(yn){
-                
-            $.ajax({    
-                
-                url        : "/insertBoard",
-                data    : $("#boardForm").serialize(),
+            
+        	 var filesChk = $("input[name='files[0]']").val();
+             if(filesChk == ""){
+                 $("input[name='files[0]']").remove();
+             }
+        	
+             $("#boardForm").ajaxForm({    
+            	
+                url     : "/insertBoard",
                 dataType: "JSON",
+                enctype : "multipart/form-data",
+                type    : "POST",   
                 cache   : false,
-                async   : true,
-                type    : "POST",    
+                async   : true, 
                 success : function(obj) {
                     insertBoardCallback(obj);                
                 },           
                 error     : function(xhr, status, error) {}
                 
-            });
+            }).submit();
         }
     }
     
@@ -78,8 +80,7 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
-	<link rel="stylesheet" type="text/css" href="css/recruit.css">
-	<script src="js/jquery.min.js"></script>		
+	<link rel="stylesheet" type="text/css" href="css/recruit.css">		
 
 </head>
 <body>
@@ -140,16 +141,16 @@
 	<div class="container">
 		<div class="content">
 			<span class="content-header">채용공고</span>
-			<form id="boardForm" name="boardForm">
+			<form id="boardForm" name="boardForm" class = "boardForm" action="/insertBoard" enctype="multipart/form-data" method="POST" onsubmit="return false;">
 			<div class="content-body">
 				<div class="recruitNoticeEdit">											
 					<input id="board_title" name="board_title" value="" class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
 					<textarea id="board_content" name="board_content" class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
-					</form>
 					<div class="addFileInput" style="margin-bottom:10px;">
 						<i class="addFileIcon fas fa-folder-open"></i>
-						<button class="addFileButton">파일 선택</button>
+						<input type="file" id="files[0]" name="files[0]" value=""/>
 					</div>
+			</form>
 					<div class="recruitEdit-btnArea">
 						<button class="cancelBtn" onclick="goBack()" style="margin-right:10px;">취 소</button>
 						<button type = "button" class="btn black" onclick = "javascript:insertBoard();" class="submitBtn">작성완료</button>

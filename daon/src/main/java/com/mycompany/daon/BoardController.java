@@ -1,5 +1,7 @@
 package com.mycompany.daon;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.mycompany.daon.BoardDto;
 import com.mycompany.daon.BoardForm;
@@ -72,7 +76,7 @@ public class BoardController {
         return boardDto;
     }
     
-    @RequestMapping( value = "/insertBoard")
+    @RequestMapping(value = "/insertBoard")
     @ResponseBody
     public BoardDto insertBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception{
         
@@ -104,6 +108,42 @@ public class BoardController {
 		
 		return "recruit/recruitNoticeEdit";
 	}
+    
+	@RequestMapping(value = "/upload", method = RequestMethod.GET)
+	public String upload(Locale locale, Model model) {
+
+		return "upload";
+	}
+    
+    @RequestMapping(value = "requestupload2")
+    public String requestupload(MultipartHttpServletRequest mtfRequest) {
+        List<MultipartFile> fileList = mtfRequest.getFiles("file");
+        String src = mtfRequest.getParameter("src");
+        System.out.println("src value : " + src);
+
+        String path = "C:\\image\\";
+
+        for (MultipartFile mf : fileList) {
+            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+            long fileSize = mf.getSize(); // 파일 사이즈
+
+            System.out.println("originFileName : " + originFileName);
+            System.out.println("fileSize : " + fileSize);
+
+            String safeFile = path + System.currentTimeMillis() + originFileName;
+            try {
+                mf.transferTo(new File(safeFile));
+            } catch (IllegalStateException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return "redirect:/";
+    }
     
     /** �Խ��� - ���� ������ �̵� */
     /*@RequestMapping( value = "/boardUpdate")

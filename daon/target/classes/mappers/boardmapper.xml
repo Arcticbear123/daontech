@@ -30,11 +30,25 @@
         WHERE BOARD_NO = #{board_no}
     </select>
 	
+	<select id="getBoardReRef" parameterType="com.mycompany.daon.BoardForm" resultType="int">
+    
+        SELECT IFNULL(MAX(board_re_ref), 0) + 1
+        FROM tb_recruit_board
+    
+    </select>
+	
 	 <insert id="insertBoard" parameterType="com.mycompany.daon.BoardForm">
+    
+    	<selectKey resultType="int" keyProperty="board_no" order="AFTER">
+ 
+            SELECT LAST_INSERT_ID()
+ 
+        </selectKey>
     
         INSERT 
         INTO tb_recruit_board 
         (
+        	board_re_ref,
 			BOARD_TITLE,
 			BOARD_CONTENT,
 			REG_DATE,
@@ -42,12 +56,47 @@
         ) 
         VALUES 
         (
-            #{board_title}
+        	#{board_re_ref}
+            ,#{board_title}
             , #{board_content}
             , NOW()
             , '관리자'
         )
     
+    </insert>
+    
+    <insert id="insertBoardFile" parameterType="com.mycompany.daon.BoardFileForm">
+    	
+    	<selectKey resultType="int" keyProperty="file_no" order="BEFORE">
+            
+            SELECT IFNULL(MAX(FILE_NO), 0) + 1 
+            FROM TB_RECRUIT_BOARD_FILE
+            WHERE BOARD_NO = #{board_no}
+              
+        </selectKey>
+        
+		    INSERT 
+		    INTO
+		    TB_RECRUIT_BOARD_FILE 
+		    (
+		    	board_no,
+		    	file_no,
+		    	file_name_key,
+		    	file_name,
+		    	file_path,
+		    	file_size,
+		    	reg_date
+		    )
+		     VALUES 
+		     (
+		     	  #{board_no}
+	            , #{file_no}
+	            , #{file_name_key}
+	            , #{file_name}
+	            , #{file_path}
+	            , #{file_size}
+			     , NOW()
+			  )
     </insert>
     
     <delete id="deleteBoard" parameterType="com.mycompany.daon.BoardForm">

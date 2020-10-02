@@ -48,6 +48,17 @@ public class BoardDao {
         return sqlSession.delete(NAMESPACE + ".deleteBoard", boardForm);
     }
     
+    /** 게시판 - 그룹 번호 조회 */
+    public int getBoardReRef(BoardForm boardForm) throws Exception {
+ 
+        return sqlSession.selectOne(NAMESPACE + ".getBoardReRef", boardForm);
+    }
+    
+    /** 게시판 - 첨부파일 등록 */
+	public int insertBoardFile(BoardFileForm boardFileForm) throws Exception {
+		return sqlSession.insert(NAMESPACE + ".insertBoardFile", boardFileForm);
+	}
+    
     /** �Խ��� - ����  */
     /*public int updateBoard(BoardForm boardForm) throws Exception {
         
