@@ -167,6 +167,7 @@
 	                    str += "<div class=\"recruitViewFile\">";
 	                    str += "<i class=\"addFileIcon fas fa-folder-open\"></i>";
 	                    str += "<a href=\"/fileDownload?fileNameKey=" + encodeURI(fileNameKey) + "&fileName=" + encodeURI(fileName) + "&filePath=" + encodeURI(filePath) + "\">" + fileName + "</a>";
+	                    str += "</div>";
 	                    console.log(str);
 	                    $('.viewFooter').append(str);
 	            	}
