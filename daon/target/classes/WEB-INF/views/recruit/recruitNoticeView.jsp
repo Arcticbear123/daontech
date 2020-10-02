@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/recruit.css">
+	<script type="text/javascript" src="/js/common/jquery.js"></script>
 	<script src="js/jquery.min.js"></script>	
 </head>
 
@@ -152,11 +153,26 @@
 	            var boardContent   = obj.board_content; 
 	            var regdate		   = obj.reg_date;
 	            var boardwriter    = obj.board_writer;
+	            var files          = obj.files;
+	            var filesLen	   = files.length;
 	                    
 	            $("#board_title").text(boardtitle);            
 	            $("#board_content").val(boardContent);
 	            $('#reg_date').text(regdate);
 	            $("#board_writer").text(boardwriter);
+	            
+	            if(filesLen > 0){
+	            	for(var i=0; i < filesLen; i++){
+	            		var boardno    = files[i].board_no;
+	                    var fileNo     = files[i].file_no;
+	                    var fileNameKey = files[i].file_name_key;
+	                    var fileName     = files[i].file_name;
+	                    var filePath     = files[i].file_path;
+	                    var fileSize     = files[i].file_size;
+	                    
+	                    console.log("fileName : " + fileName);
+	            	}
+	            }
 	            
 	        } else {	            
 	            alert("등록된 글이 존재하지 않습니다.");
@@ -199,6 +215,12 @@
 	                return;
 	            }
 	        }
+	    }
+	    
+	    /** 게시판 - 첨부파일 다운로드 */
+	    function fileDownload(fileNameKey, fileName, filePath){
+	            
+	        location.href = "/board/fileDownload?fileNameKey="+fileNameKey+"&fileName="+fileName+"&filePath="+filePath;
 	    }
 	</script>
 	

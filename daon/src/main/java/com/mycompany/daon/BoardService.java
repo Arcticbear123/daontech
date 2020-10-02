@@ -62,6 +62,11 @@ public class BoardService {
  
         boardDto = boardDao.getBoardDetail(boardForm);
         
+        BoardFileForm boardFileForm = new BoardFileForm();
+        boardFileForm.setBoard_no(boardForm.getBoard_no());
+ 
+        boardDto.setFiles(boardDao.getBoardFileList(boardFileForm));
+        
         return boardDto;
     }
  

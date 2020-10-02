@@ -37,6 +37,13 @@ public class BoardDao {
         return sqlSession.selectOne(NAMESPACE + ".getBoardDetail", boardForm);
     }
     
+    /** 게시판 - 첨부파일 조회 */
+    public List<BoardFileDto> getBoardFileList(BoardFileForm boardFileForm) throws Exception {
+ 
+        return sqlSession.selectList(NAMESPACE + ".getBoardFileList", boardFileForm);
+    }
+ 
+    
     /** �Խ��� - ���  */   
     public int insertBoard(BoardForm boardForm) throws Exception {
         return sqlSession.insert(NAMESPACE + ".insertBoard", boardForm);

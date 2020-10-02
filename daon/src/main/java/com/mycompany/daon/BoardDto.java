@@ -2,6 +2,7 @@ package com.mycompany.daon;
 
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardDto {
 
@@ -11,6 +12,8 @@ public class BoardDto {
     String reg_date;
     String board_writer;
     String result;
+    
+    List<BoardFileDto> files;
     
     public int getBoard_no() {
         return board_no;
@@ -58,6 +61,14 @@ public class BoardDto {
     }
     public void setBoard_writer(String board_writer) {
     	this.board_writer = board_writer;
+    }
+    
+    public List<BoardFileDto> getFiles() {
+        return files;
+    }
+ 
+    public void setFiles(List<BoardFileDto> files) {
+        this.files = files;
     }
 
  

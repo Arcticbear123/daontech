@@ -29,6 +29,23 @@
         FROM tb_recruit_board
         WHERE BOARD_NO = #{board_no}
     </select>
+    
+    <select id="getBoardFileList" parameterType="com.mycompany.daon.BoardFileForm" resultType="com.mycompany.daon.BoardFileDto">
+    
+        SELECT T1.*
+        FROM (
+                SELECT BOARD_NO
+                     , FILE_NO
+                     , FILE_NAME_KEY
+                     , FILE_NAME
+                     , FILE_PATH
+                     , FILE_SIZE
+                     
+                FROM TB_RECRUIT_BOARD_FILE
+                WHERE BOARD_NO = #{board_no}
+              ) T1        
+            
+    </select>
 	
 	<select id="getBoardReRef" parameterType="com.mycompany.daon.BoardForm" resultType="int">
     

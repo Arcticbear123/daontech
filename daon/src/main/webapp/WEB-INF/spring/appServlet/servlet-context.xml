@@ -27,10 +27,12 @@
 		<beans:property name="order" value="1" />		
 	</beans:bean>
 	<beans:bean id="downloadView" class="com.mycompany.daon.DownloadView" />
+	<beans:bean id="FileDownloadUtil" class="com.mycompany.daon.FileDownloadUtil"/>
 	<beans:bean
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />
 	</beans:bean>
+	
 	
 	<context:component-scan base-package="com.mycompany.daon" />
 	
