@@ -13,14 +13,22 @@
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<script src="js/jquery.min.js"></script>		
-	<script src="js/aos.js"></script>		
+	<script src="js/aos.js"></script>	
+	<script src="js/owl.carousel.min.js"></script>	
 	<link rel="stylesheet" type="text/css" href="css/aos.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
 </head>
 <body>
 	<!-- Global Navigation Bar -->
 	<jsp:include flush="false" page="./common/gnb.jsp" />
 	
 	<div class="mainBg">
+		<ul class="slideWrap owl-carousel">				
+			<li class="slide"><img class="mainBgImg" src="image/textBgPaper.jpeg"/></li>	
+			<li class="slide"><img class="mainBgImg" src="image/newBG2.jpg"/></li>	
+			<li class="slide"><img class="mainBgImg" src="image/tempMainImg2.jpeg"/></li>						
+		</ul>
+		<!-- 
 		<span class="mainBgText">
 			<span style="margin-bottom:-35px;">고객사의</span><br>
 			<span>경쟁력 향상에 기여하는</span><br>
@@ -28,8 +36,7 @@
 				<span class="orange bold">최고</span>의 
 				<span class="sky bold">비즈니스 파트너</span>
 			</span>
-		</span>
-		<img class="mainBgImg" src="image/textBgPaper.jpeg"/>
+		</span> -->		
 	</div>
 	
 	<div class="section1">
@@ -137,6 +144,56 @@
 
 
 	<script>
+	$('.owl-carousel').owlCarousel({
+		items:1,
+		loop:true,
+		center:true,
+		autoplay:true,
+		autoplayTimeout:4500,
+		autoplayHoverPause:false,
+		slideSpeed:1000
+	});
+	//carousel 시작
+	/*
+	var winW = cnt = setId	= 0;
+	resizeFn();
+	
+	function resizeFn(){
+		winW = $(window).innerWidth();
+		$('.slide').css('width', winW);
+	}
+	
+	$(window).resize(function(){
+		resizeFn();
+	});
+	
+	autoPlayFn();
+	
+	function autoPlayFn(){
+		setId = setInterval(nextCountFn, 1500);
+	}
+	
+	function prevCountFn(){
+		cnt--;
+		mainSlideFn();
+	}
+	
+	function nextCountFn(){
+		cnt++;
+		mainSlideFn();
+	}
+	
+	function mainSlideFn(){
+		$('.slideWrap').stop().animate({left:(-100*cnt)+'%'}, 600, function(){
+			if(cnt>2){
+				cnt=0;
+			}
+			if(cnt<0){
+				cnt=2;
+			}
+			$('.slideWrap').stop().animate({left:(-100*cnt)+'%'}, 0);
+		});
+	}*/
 
 	
 	
