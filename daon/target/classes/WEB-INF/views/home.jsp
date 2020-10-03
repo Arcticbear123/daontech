@@ -24,9 +24,30 @@
 	
 	<div class="mainBg">
 		<ul class="slideWrap owl-carousel">				
-			<li class="slide"><img class="mainBgImg" src="image/textBgPaper.jpeg"/></li>	
-			<li class="slide"><img class="mainBgImg" src="image/newBG2.jpg"/></li>	
-			<li class="slide"><img class="mainBgImg" src="image/tempMainImg2.jpeg"/></li>						
+			<li class="slide">
+				<div class="mainBgText2">
+					<span>고객사의 경쟁력 향상에 기여하는<br></span>
+					<span>최고의 비즈니스 파트너</span>					
+					<span>Daon Technology</span>
+				</div>
+				<img class="mainBgImg" src="image/textBgPaper.jpeg"/>
+			</li>	
+			<li class="slide">
+				<div class="mainBgText2">
+					<span>고객사의 경쟁력 향상에 기여하는<br></span>
+					<span>최고의 비즈니스 파트너</span>
+					<span>Daon Technology</span>
+				</div>
+				<img class="mainBgImg" src="image/lastTemp.jpeg"/>
+			</li>
+			<li class="slide">
+				<div class="mainBgText2">
+					<span>고객사의 경쟁력 향상에 기여하는<br></span>
+					<span>최고의 비즈니스 파트너</span>
+					<span>Daon Technology</span>
+				</div>
+				<img class="mainBgImg" src="image/carouselTempJ1.jpeg"/>
+			</li>										
 		</ul>
 		<!-- 
 		<span class="mainBgText">
@@ -36,7 +57,8 @@
 				<span class="orange bold">최고</span>의 
 				<span class="sky bold">비즈니스 파트너</span>
 			</span>
-		</span> -->		
+		</span>
+		 -->		
 	</div>
 	
 	<div class="section1">
@@ -151,51 +173,9 @@
 		autoplay:true,
 		autoplayTimeout:4500,
 		autoplayHoverPause:false,
-		slideSpeed:1000
+		animateOut: 'fadeOut'
 	});
-	//carousel 시작
-	/*
-	var winW = cnt = setId	= 0;
-	resizeFn();
-	
-	function resizeFn(){
-		winW = $(window).innerWidth();
-		$('.slide').css('width', winW);
-	}
-	
-	$(window).resize(function(){
-		resizeFn();
-	});
-	
-	autoPlayFn();
-	
-	function autoPlayFn(){
-		setId = setInterval(nextCountFn, 1500);
-	}
-	
-	function prevCountFn(){
-		cnt--;
-		mainSlideFn();
-	}
-	
-	function nextCountFn(){
-		cnt++;
-		mainSlideFn();
-	}
-	
-	function mainSlideFn(){
-		$('.slideWrap').stop().animate({left:(-100*cnt)+'%'}, 600, function(){
-			if(cnt>2){
-				cnt=0;
-			}
-			if(cnt<0){
-				cnt=2;
-			}
-			$('.slideWrap').stop().animate({left:(-100*cnt)+'%'}, 0);
-		});
-	}*/
-
-	
+		
 	
 	$('.section2-imgHolder > img').hover(function(){
 		$(this).parent().siblings('.section2-btn').css('background', '#EFA234');
