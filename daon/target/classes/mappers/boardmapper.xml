@@ -7,8 +7,15 @@
 		SELECT 
 		 BOARD_NO, 
 		 BOARD_TITLE,
-		 CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d %H:%i:%s' ) AS CHAR(19) ) AS REG_DATE,
+		 CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d') AS CHAR(10) ) AS REG_DATE,
 		 BOARD_WRITER
+			from tb_recruit_board
+			order by board_no desc
+	</select>
+	
+	<select id = "getBoardCount" resultType="int">
+		SELECT 
+		 COUNT(*)
 			from tb_recruit_board
 	</select>
 	
@@ -18,7 +25,7 @@
         	BOARD_NO,
         	BOARD_TITLE,
         	BOARD_CONTENT,
-        	REG_DATE
+        	CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d' ) AS CHAR(10) ) AS REG_DATE
         FROM tb_recruit_board
         WHERE BOARD_NO = #{board_no}
     </select>

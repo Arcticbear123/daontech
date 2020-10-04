@@ -15,12 +15,17 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 	
-	/** °Ô½ÃÆÇ - ¸ñ·Ï Á¶È¸ */
-	public List<BoardDto> getBoardList(BoardForm boardForm) throws Exception{
+	/** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ */
+	public List<BoardDto> getBoardList(BoardForm boardForm, int limit, int num) throws Exception{
 		
-		return boardDao.getBoardList(boardForm);
+		return boardDao.getBoardList(boardForm, limit, num);
 	}
-	/** °Ô½ÃÆÇ - »ó¼¼ Á¶È¸ */
+	
+	public int getBoardCount() {
+    	return boardDao.getBoardCount();
+    }
+	
+	/** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ ï¿½ï¿½È¸ */
     public BoardDto getBoardDetail(BoardForm boardForm) throws Exception {
  
         BoardDto boardDto = new BoardDto();
@@ -45,7 +50,7 @@ public class BoardService {
         return boardDto;
     }
  
-    /** °Ô½ÃÆÇ - µî·Ï */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ */
     public BoardDto insertBoard(BoardForm boardForm) throws Exception {
  
         BoardDto boardDto = new BoardDto();
@@ -61,7 +66,7 @@ public class BoardService {
         return boardDto;
     }
  
-    /** °Ô½ÃÆÇ - »èÁ¦ */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ */
     public BoardDto deleteBoard(BoardForm boardForm) throws Exception {
  
         BoardDto boardDto = new BoardDto();
@@ -77,7 +82,7 @@ public class BoardService {
         return boardDto;
     }
  
-    /** °Ô½ÃÆÇ - ¼öÁ¤ */
+    /** ï¿½Ô½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ */
     /*public BoardDto updateBoard(BoardForm boardForm) throws Exception {
  
         BoardDto boardDto = new BoardDto();

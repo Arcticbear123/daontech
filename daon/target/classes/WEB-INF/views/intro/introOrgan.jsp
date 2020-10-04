@@ -7,8 +7,16 @@
 		<div class="organ-content">
 			<div class="organ-box" style="margin:0 auto;background:#EFA234;">대표</div>
 			<div class="organ-line" style="margin:0 auto;"></div>
-			<div class="organ-box" style="margin:0 auto;background:#EFA234;">실장(현장대리인)</div>
-			<div class="organ-line" style="margin:0 auto;"></div>
+			<div class="organ-lineKeeper"></div>
+			<div style="display:flex;">
+				<div class="organ-box" style="margin-left:187.5px;background:#EFA234;">ICT 부문</div>
+				<div class="organ-line" style="margin-left:436.5px;height:50px;"></div>
+			</div>
+			<div style="display:flex;">
+				<div class="organ-line" style="margin-left:312.5px"></div>
+				<div class="organ-line" style="margin-left:560.5px"></div>
+			</div>			
+			
 			<div class="organ-vertical"></div>
 			<div class="organ-lineHolder">
 				<div class="organ-line"></div>

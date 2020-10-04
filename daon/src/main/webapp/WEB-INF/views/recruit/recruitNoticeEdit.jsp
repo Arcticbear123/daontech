@@ -3,9 +3,6 @@
 <!DOCTYPE html>
 <script type="text/javascript">
     
-    $(document).ready(function(){        
-        
-    });
         
     /** 게시판 - 목록 페이지 이동 */
     /*function goBoardList(){                
@@ -35,7 +32,7 @@
                 
             $.ajax({    
                 
-                url        : "/recruit/insertBoard",
+                url        : "/insertBoard",
                 data    : $("#boardForm").serialize(),
                 dataType: "JSON",
                 cache   : false,
@@ -151,8 +148,8 @@
 						<button class="addFileButton">파일 선택</button>
 					</div>
 					<div class="recruitEdit-btnArea">
-						<button class="cancelBtn" onclick="goBack()" style="margin-right:10px;">취 소</button>
-						<button type = "button" class="btn black" onclick = "javascript:insertBoard();" class="submitBtn">작성완료</button>
+						<button class="cancelBtn" onclick="goBack()" style="margin-right:10px;" type="button">취 소</button>
+						<button type = "button" class="normalBtn" onclick = "javascript:insertBoard();" class="submitBtn">작성완료</button>
 					</div>
 				</div>				
 			</div>

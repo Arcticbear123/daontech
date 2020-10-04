@@ -119,9 +119,15 @@
 	width:1px;height:40px;
 	background:#d0d3db;
 }
+.organ-lineKeeper{
+	width:562.5px;height:40px;
+	margin-left:312.5px;
+	border:1px solid #d0d3db;
+	border-bottom:none;
+}
 .organ-vertical{
-	width:750px;height:1px;
-	background:#d0d3db;margin:0 auto;
+	width:375.5px;height:1px;
+	background:#d0d3db;margin-left:125px;
 }
 .organ-lineHolder{
 	display:flex;align-items:center;justify-content:space-between;
