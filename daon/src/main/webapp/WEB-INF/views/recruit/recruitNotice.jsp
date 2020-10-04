@@ -67,8 +67,8 @@
                 str += "</tr>";                
             }             
         }else{            
-            str += "<tr colspan='4'>";
-            str += "<td>등록된 글이 존재하지 않습니다.</td>";
+            str += "<tr>";
+            str += "<td colspan='4'>등록된 글이 존재하지 않습니다.</td>";
             str += "<tr>";
         }        
         $(".recruitTable").append(str);

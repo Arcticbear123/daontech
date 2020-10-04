@@ -13,14 +13,43 @@
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<script src="js/jquery.min.js"></script>		
-	<script src="js/aos.js"></script>		
+	<script src="js/aos.js"></script>	
+	<script src="js/owl.carousel.min.js"></script>	
 	<link rel="stylesheet" type="text/css" href="css/aos.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
 </head>
 <body>
 	<!-- Global Navigation Bar -->
 	<jsp:include flush="false" page="./common/gnb.jsp" />
 	
 	<div class="mainBg">
+		<ul class="slideWrap owl-carousel">				
+			<li class="slide">
+				<div class="mainBgText2">
+					<span>고객사의 경쟁력 향상에 기여하는<br></span>
+					<span>최고의 비즈니스 파트너</span>					
+					<span>Daon Technology</span>
+				</div>
+				<img class="mainBgImg" src="image/textBgPaper.jpeg"/>
+			</li>	
+			<li class="slide">
+				<div class="mainBgText2">
+					<span>고객사의 경쟁력 향상에 기여하는<br></span>
+					<span>최고의 비즈니스 파트너</span>
+					<span>Daon Technology</span>
+				</div>
+				<img class="mainBgImg" src="image/lastTemp.jpeg"/>
+			</li>
+			<li class="slide">
+				<div class="mainBgText2">
+					<span>고객사의 경쟁력 향상에 기여하는<br></span>
+					<span>최고의 비즈니스 파트너</span>
+					<span>Daon Technology</span>
+				</div>
+				<img class="mainBgImg" src="image/carouselTempJ1.jpeg"/>
+			</li>										
+		</ul>
+		<!-- 
 		<span class="mainBgText">
 			<span style="margin-bottom:-35px;">고객사의</span><br>
 			<span>경쟁력 향상에 기여하는</span><br>
@@ -29,6 +58,7 @@
 				<span class="sky bold">비즈니스 파트너</span>
 			</span>
 		</span>
+		 -->		
 	</div>
 	
 	<div class="section1">
@@ -136,8 +166,16 @@
 
 
 	<script>
-
-	
+	$('.owl-carousel').owlCarousel({
+		items:1,
+		loop:true,
+		center:true,
+		autoplay:true,
+		autoplayTimeout:4500,
+		autoplayHoverPause:false,
+		animateOut: 'fadeOut'
+	});
+		
 	
 	$('.section2-imgHolder > img').hover(function(){
 		$(this).parent().siblings('.section2-btn').css('background', '#EFA234');
