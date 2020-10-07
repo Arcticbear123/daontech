@@ -3,6 +3,13 @@
 
 
 <mapper namespace="com.mycompany.daon.boardmapper">
+
+	<select id = "LoginCheck" parameterType="com.mycompany.daon.LoginUserForm" resultType="com.mycompany.daon.LoginDto">
+		select user_id, user_pwd from user_info
+		where user_id = #{user_id}
+		and  user_pwd = #{user_pwd}
+	</select>
+	
 	<select id = "getBoardList" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
 		SELECT 
 		 BOARD_NO, 
