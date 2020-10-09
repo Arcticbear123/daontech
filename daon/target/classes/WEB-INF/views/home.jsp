@@ -30,7 +30,7 @@
 					<span>최고의 비즈니스 파트너</span>					
 					<span>Daon Technology</span>
 				</div>
-				<img class="mainBgImg" src="image/textBgPaper.jpeg"/>
+				<img class="mainBgImg" src="image/daonCarouselImg1.jpeg"/>
 			</li>	
 			<li class="slide">
 				<div class="mainBgText2">
@@ -38,7 +38,7 @@
 					<span>최고의 비즈니스 파트너</span>
 					<span>Daon Technology</span>
 				</div>
-				<img class="mainBgImg" src="image/lastTemp.jpeg"/>
+				<img class="mainBgImg" src="image/daonCarouselImg2.jpeg"/>
 			</li>
 			<li class="slide">
 				<div class="mainBgText2">
@@ -46,7 +46,7 @@
 					<span>최고의 비즈니스 파트너</span>
 					<span>Daon Technology</span>
 				</div>
-				<img class="mainBgImg" src="image/carouselTempJ1.jpeg"/>
+				<img class="mainBgImg" src="image/daonCarouselImg3.jpeg"/>
 			</li>										
 		</ul>
 		<!-- 
