@@ -128,7 +128,7 @@ public class BoardService {
         String file_name_key = null;
         String file_size = null;
         // 파일이 저장될 Path 설정
-        String file_path = "C:\\board\\file";
+        String file_path = "boardFiles";
         
         if (files != null && files.size() > 0) {
  

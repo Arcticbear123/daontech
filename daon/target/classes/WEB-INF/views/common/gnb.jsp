@@ -35,9 +35,9 @@
 		<span class="gnbBtn" onclick="goMenu('SUPPORT', 0)">
 			고객지원
 			<span class="gnbDrop">
-				<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 0)">QnA</span>
-				<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 1)">NEWS</span>
-				<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 2)">홍보자료</span>					
+				<!-- <span class="gnbDropMenu" onclick="goMenu('SUPPORT', 0)">QnA</span> -->
+				<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 0)">NEWS</span>
+				<span class="gnbDropMenu" onclick="goMenu('SUPPORT', 1)">홍보자료</span>					
 			</span>
 		</span>
 	</div>
@@ -46,72 +46,26 @@
 <div class="loginForm">
 	<i class="loginCloseBtn far fa-times" onclick="closeLoginForm()"></i>
 	<div class="loginLabel">관리자 로그인</div>
-	<form id ="LoginUserForm" class="LoginUserForm" action="/LoginCheck" method="POST">
-		<div class="loginRow">
-			<span class="loginRowLabel">ID :&nbsp;</span>
-			<input id="user_id" name="user_id" class="loginInput" type="text"/>
-		</div>
-		<div class="loginRow">
-			<span class="loginRowLabel">PW :&nbsp;</span>
-			<input id="user_pwd" name="user_pwd" class="loginInput" type="password"/>
-		</div>
-	</form>	
-		<div class="" style="text-align:center;">
-			<button class="loginSubmit submitBtn" onclick="LoginCheck()">로그인</button>
-		</div>
+	<div class="loginRow">
+		<span class="loginRowLabel">ID :&nbsp;</span>
+		<input class="loginInput" type="text"/>
+	</div>
+	<div class="loginRow">
+		<span class="loginRowLabel">PW :&nbsp;</span>
+		<input class="loginInput" type="password"/>
+	</div>
+	<div class="" style="text-align:center;">
+		<button class="loginSubmit submitBtn">로그인</button>
+	</div>
+	
 </div>
 	
-<script type=text/javascript>
-	function openLoginForm(){
-		$('.loginForm').show();
-	}
-	
-	function closeLoginForm(){
-		$('.loginForm').hide();
-	}
+<script>
+function openLoginForm(){
+	$('.loginForm').show();
+}
 
-function LoginCheck(){
-	 
-    var user_id = $("#user_id").val();
-    var user_pwd = $("#user_pwd").val();
-        
-    if (user_id == ""){            
-        alert("ID를 입력해주세요.");
-        $("#user_id").focus();
-    }
-    
-    if (user_pwd == ""){            
-        alert("비밀번호를 입력해주세요.");
-        $("#user_pwd").focus();
-    }
-    
-    	$.ajax({
-    		url		: "/CheckLogin",
-    		type	: "POST",
-	        data    : $("#LoginUserForm").serialize(),
-	        dataType:"JSON",
-            cache   : false,
-            async   : true,
-	        success : function(obj) {
-	        	getUserInfoCallBack(obj);
-	        },
-	        error : function(xhr, status, error) {}
-	     });
-		}
-		
-	function getUserInfoCallBack(obj){
-    
-    if(obj != null){        
-        
-        var result = obj.result;
-        
-        if(result == "SUCCESS"){                
-            alert("로그인에 성공하였습니다.");                
-            goBack();                
-        } else {                
-            alert("등록되지 않은 사용자 입니다.");    
-            return;
-        }
-    }
+function closeLoginForm(){
+	$('.loginForm').hide();
 }
 </script>

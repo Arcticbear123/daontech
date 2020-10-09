@@ -8,6 +8,7 @@
     String target = request.getParameter("target");
     String fnCount = request.getParameter("fnCount");
     String fnList = request.getParameter("fnList");
+    String menu = request.getParameter("menu");
 %>
 <c:set var="row" value="<%=row%>"/>
 <c:set var="maxPage" value="<%=maxPage%>"/>
@@ -16,6 +17,7 @@
 <input type="hidden" id="target" name ="target" value="${target}"/>
 <input type="hidden" id="fnCount" name ="fnCount" value="${fnCount}"/>
 <input type="hidden" id="fnList" name ="fnList" value="${fnList}"/>
+<input type="hidden" id="menu" name ="menu" value="${menu}"/>
 
 
 
@@ -30,10 +32,10 @@
 
 <script>
 $(document).ready(function(){
-	getCount();
+	get<%=menu%>Count();
 });
 
-function getCount(){
+function get<%=menu%>Count(){
 	var row = <%=row%>;			// 한 페이지당 표시할 페이지의 수
 	var maxPage = <%=maxPage%>;	// 한번에 표시할 페이지의 구간
 	var currentPage = 1;
@@ -44,14 +46,14 @@ function getCount(){
         cache   : false,
         async   : true,
         success : function(data) {
-           calcPaging(data, row, maxPage, currentPage);
+           calc<%=menu%>Paging(data, row, maxPage, currentPage);
         },
         error : function(xhr, status, error) {}
      });
 	
 }
 
-function calcPaging(count, row, maxPage, currentPage){
+function calc<%=menu%>Paging(count, row, maxPage, currentPage){
 	var count = count;	//전체 데이터의 개수
 	var row = row;		
 	var maxPage = maxPage;
@@ -91,7 +93,7 @@ function calcPaging(count, row, maxPage, currentPage){
     }
     
     
-    $('.paging').append(html);
+    $('#<%=target%> .paging').append(html);
     
     var limit = (currentPage-1)*row;	// 건너뛸 게시글의 개수
     var num = row;	// 보여줄 게시글의 개수
@@ -109,7 +111,7 @@ function calcPaging(count, row, maxPage, currentPage){
     	if(target.is(".paging-goNext")){
     		selectedPage = nextPage;
     	}    	
-    	calcPaging(count, row, maxPage, selectedPage);    	
+    	calc<%=menu%>Paging(count, row, maxPage, selectedPage);    	
     });
    
 }

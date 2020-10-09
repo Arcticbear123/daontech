@@ -3,13 +3,7 @@
 
 
 <mapper namespace="com.mycompany.daon.boardmapper">
-
-	<select id = "LoginCheck" parameterType="com.mycompany.daon.LoginUserForm" resultType="com.mycompany.daon.LoginDto">
-		select user_id, user_pwd from user_info
-		where user_id = #{user_id}
-		and  user_pwd = #{user_pwd}
-	</select>
-	
+	<!-- 채용공고(recruit) 시작 -->
 	<select id = "getBoardList" parameterType="com.mycompany.daon.BoardForm" resultType="com.mycompany.daon.BoardDto">
 		SELECT 
 		 BOARD_NO, 
@@ -32,6 +26,7 @@
         	BOARD_NO,
         	BOARD_TITLE,
         	BOARD_CONTENT,
+        	BOARD_WRITER,
         	CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d' ) AS CHAR(10) ) AS REG_DATE
         FROM tb_recruit_board
         WHERE BOARD_NO = #{board_no}
@@ -140,5 +135,274 @@
          WHERE BOARD_NO = #{board_no}
     
     </delete>
+    <!-- 채용공고(recruit) 끝 -->
+    
+    <!-- 뉴스(news) 시작 -->
+    <select id = "getNewsList" parameterType="com.mycompany.daon.NewsForm" resultType="com.mycompany.daon.NewsDto">
+		SELECT 
+		 BOARD_NO, 
+		 BOARD_TITLE,
+		 CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d') AS CHAR(10) ) AS REG_DATE,
+		 BOARD_WRITER
+			from tb_news_board
+			order by board_no desc
+	</select>
+    
+    <select id = "getNewsCount" resultType="int">
+		SELECT 
+		 COUNT(*)
+			from tb_news_board
+	</select>
+	
+	<select id="getNewsDetail" parameterType="com.mycompany.daon.NewsForm" resultType="com.mycompany.daon.NewsDto">
+    
+        SELECT 
+        	BOARD_NO,
+        	BOARD_TITLE,
+        	BOARD_CONTENT,
+        	BOARD_WRITER,
+        	CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d' ) AS CHAR(10) ) AS REG_DATE
+        FROM tb_news_board
+        WHERE BOARD_NO = #{board_no}
+    </select>
+    
+    <select id="getNewsFileList" parameterType="com.mycompany.daon.NewsFileForm" resultType="com.mycompany.daon.NewsFileDto">
+    
+        SELECT T1.*
+        FROM (
+                SELECT BOARD_NO
+                     , FILE_NO
+                     , FILE_NAME_KEY
+                     , FILE_NAME
+                     , FILE_PATH
+                     , FILE_SIZE
+                     
+                FROM TB_NEWS_BOARD_FILE
+                WHERE BOARD_NO = #{board_no}
+              ) T1        
+            
+    </select>
+	
+	<select id="getNewsReRef" parameterType="com.mycompany.daon.NewsForm" resultType="int">
+    
+        SELECT IFNULL(MAX(board_re_ref), 0) + 1
+        FROM tb_news_board
+    
+    </select>
+	
+	 <insert id="insertNews" parameterType="com.mycompany.daon.NewsForm">
+    
+    	<selectKey resultType="int" keyProperty="board_no" order="AFTER">
+ 
+            SELECT LAST_INSERT_ID()
+ 
+        </selectKey>
+    
+        INSERT 
+        INTO tb_news_board 
+        (
+        	board_re_ref,
+			BOARD_TITLE,
+			BOARD_CONTENT,
+			REG_DATE,
+			BOARD_WRITER
+        ) 
+        VALUES 
+        (
+        	#{board_re_ref}
+            ,#{board_title}
+            , #{board_content}
+            , NOW()
+            , '관리자'
+        )
+    
+    </insert>
+    
+    <insert id="insertNewsFile" parameterType="com.mycompany.daon.NewsFileForm">
+    	
+    	<selectKey resultType="int" keyProperty="file_no" order="BEFORE">
+            
+            SELECT IFNULL(MAX(FILE_NO), 0) + 1 
+            FROM TB_NEWS_BOARD_FILE
+            WHERE BOARD_NO = #{board_no}
+              
+        </selectKey>
+        
+		    INSERT 
+		    INTO
+		    TB_NEWS_BOARD_FILE 
+		    (
+		    	board_no,
+		    	file_no,
+		    	file_name_key,
+		    	file_name,
+		    	file_path,
+		    	file_size,
+		    	reg_date
+		    )
+		     VALUES 
+		     (
+		     	  #{board_no}
+	            , #{file_no}
+	            , #{file_name_key}
+	            , #{file_name}
+	            , #{file_path}
+	            , #{file_size}
+			     , NOW()
+			  )
+    </insert>
+    
+    <delete id="deleteNews" parameterType="com.mycompany.daon.NewsForm">
+    
+        DELETE 
+        FROM tb_news_board 
+        WHERE BOARD_NO = #{board_no}
+    
+    </delete>
+    
+    <delete id="updateNews" parameterType="com.mycompany.daon.NewsForm">
+    
+        UPDATE tb_news_board
+           SET BOARD_TITLE = #{board_title}
+             , BOARD_CONTENT = #{board_content}
+             , REG_DATE = NOW()
+         WHERE BOARD_NO = #{board_no}
+    
+    </delete>
+    <!-- 뉴스(news) 끝 -->
+    
+    <!-- 홍보자료(promotion) 시작 -->
+    <select id = "getPromotionList" parameterType="com.mycompany.daon.PromotionForm" resultType="com.mycompany.daon.PromotionDto">
+		SELECT 
+		 BOARD_NO, 
+		 BOARD_TITLE,
+		 CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d') AS CHAR(10) ) AS REG_DATE,
+		 BOARD_WRITER
+			from tb_public_relations_board
+			order by board_no desc
+	</select>
+    
+    <select id = "getPromotionCount" resultType="int">
+		SELECT 
+		 COUNT(*)
+			from tb_public_relations_board
+	</select>
+	
+	<select id="getPromotionDetail" parameterType="com.mycompany.daon.PromotionForm" resultType="com.mycompany.daon.PromotionDto">
+    
+        SELECT 
+        	BOARD_NO,
+        	BOARD_TITLE,
+        	BOARD_CONTENT,
+        	BOARD_WRITER,
+        	CAST( DATE_FORMAT( REG_DATE, '%Y-%m-%d' ) AS CHAR(10) ) AS REG_DATE
+        FROM tb_public_relations_board
+        WHERE BOARD_NO = #{board_no}
+    </select>
+    
+    <select id="getPromotionFileList" parameterType="com.mycompany.daon.PromotionFileForm" resultType="com.mycompany.daon.PromotionFileDto">
+    
+        SELECT T1.*
+        FROM (
+                SELECT BOARD_NO
+                     , FILE_NO
+                     , FILE_NAME_KEY
+                     , FILE_NAME
+                     , FILE_PATH
+                     , FILE_SIZE
+                     
+                FROM TB_PUBLIC_BOARD_FILE
+                WHERE BOARD_NO = #{board_no}
+              ) T1        
+            
+    </select>
+	
+	<select id="getPromotionReRef" parameterType="com.mycompany.daon.PromotionForm" resultType="int">
+    
+        SELECT IFNULL(MAX(board_re_ref), 0) + 1
+        FROM tb_public_relations_board
+    
+    </select>
+	
+	 <insert id="insertPromotion" parameterType="com.mycompany.daon.PromotionForm">
+    
+    	<selectKey resultType="int" keyProperty="board_no" order="AFTER">
+ 
+            SELECT LAST_INSERT_ID()
+ 
+        </selectKey>
+    
+        INSERT 
+        INTO tb_public_relations_board 
+        (
+        	board_re_ref,
+			BOARD_TITLE,
+			BOARD_CONTENT,
+			REG_DATE,
+			BOARD_WRITER
+        ) 
+        VALUES 
+        (
+        	#{board_re_ref}
+            ,#{board_title}
+            , #{board_content}
+            , NOW()
+            , '관리자'
+        )
+    
+    </insert>
+    
+    <insert id="insertPromotionFile" parameterType="com.mycompany.daon.PromotionFileForm">
+    	
+    	<selectKey resultType="int" keyProperty="file_no" order="BEFORE">
+            
+            SELECT IFNULL(MAX(FILE_NO), 0) + 1 
+            FROM TB_PUBLIC_BOARD_FILE
+            WHERE BOARD_NO = #{board_no}
+              
+        </selectKey>
+        
+		    INSERT 
+		    INTO
+		    TB_PUBLIC_BOARD_FILE 
+		    (
+		    	board_no,
+		    	file_no,
+		    	file_name_key,
+		    	file_name,
+		    	file_path,
+		    	file_size,
+		    	reg_date
+		    )
+		     VALUES 
+		     (
+		     	  #{board_no}
+	            , #{file_no}
+	            , #{file_name_key}
+	            , #{file_name}
+	            , #{file_path}
+	            , #{file_size}
+			     , NOW()
+			  )
+    </insert>
+    
+    <delete id="deletePromotion" parameterType="com.mycompany.daon.PromotionForm">
+    
+        DELETE 
+        FROM tb_public_relations_board 
+        WHERE BOARD_NO = #{board_no}
+    
+    </delete>
+    
+    <delete id="updatePromotion" parameterType="com.mycompany.daon.PromotionForm">
+    
+        UPDATE tb_public_relations_board
+           SET BOARD_TITLE = #{board_title}
+             , BOARD_CONTENT = #{board_content}
+             , REG_DATE = NOW()
+         WHERE BOARD_NO = #{board_no}
+    
+    </delete>
+    <!-- 홍보자료(promotion) 끝 -->
 	
 </mapper>

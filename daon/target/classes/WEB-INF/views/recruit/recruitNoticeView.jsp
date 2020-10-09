@@ -164,7 +164,7 @@
 	                    
 	                    console.log("fileName : " + fileName);
 	                    
-	                    str += "<div class=\"recruitViewFile\">";
+	                    str += "<div class=\"addFileHolder\">";
 	                    str += "<i class=\"addFileIcon fas fa-folder-open\"></i>";
 	                    str += "<a href=\"/fileDownload?fileNameKey=" + encodeURI(fileNameKey) + "&fileName=" + encodeURI(fileName) + "&filePath=" + encodeURI(filePath) + "\">" + fileName + "</a>";
 	                    str += "</div>";

@@ -1,3 +1,4 @@
+@charset "utf-8";
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
@@ -30,7 +31,7 @@
 /*GNB start*/
 .gnb{
 	background:#fff;
-	width:100%;height:70px;z-index:100;
+	width:100%;height:80px;z-index:100;
 	display:flex;align-items:center;	
 	box-shadow:0px 2px 5px 0 rgba(0,0,0,0.1);
 	transition:1s;
@@ -39,14 +40,14 @@
 	width:40%;text-align:center;
 }
 .logo{
-	height:50px;cursor:pointer;
+	height:65px;cursor:pointer;
 }
 .gnbList{
 	width:60%;height:100%;
 	display:flex;align-items:center;
 }
 .gnbBtn{
-	font-size:20px;font-weight:400;cursor:pointer;
+	font-size:21px;font-weight:400;cursor:pointer;
 	width:160px;height:100%;
 	display:inline-flex;align-items:center;justify-content:center;
 	position:relative;
@@ -55,7 +56,7 @@
 	color:#459BD4;
 }
 .gnbDrop{
-	position:absolute;left:0;top:70px;
+	position:absolute;left:0;top:80px;
 	background:#333;width:160px;min-height:100px;
 	display:flex;flex-direction:column;font-size:16px;
 	display:none;transition:0.3s;z-index:3;
@@ -158,6 +159,8 @@
 .subBg{
 	width:100%;height:350px;position:relative;	
 	background-repeat:no-repeat;	
+	background-size:cover;
+	background-position:center;
 }
 .subBg-text{
 	position:absolute;top:0;left:0;
@@ -175,7 +178,7 @@
 .breadCrumb{
 	width:1280px;height:60px;background:#fff;
 	border:1px solid #dee3eb;
-	position:absolute;top:390px;left:calc(50% - 640px);	
+	position:absolute;top:400px;left:calc(50% - 640px);	
 	display:flex;
 }
 .breadCrumb-home{
@@ -237,6 +240,10 @@
 .submitBtn:hover:hover{
 	background:#2a7fb7;
 }
+.addFileBtn{
+	font-size:14px;cursor:pointer;
+	color:#999;
+}
 /*Button end*/
 
 /*View Start*/
@@ -251,13 +258,13 @@
 	content:'제목 : ';
 }
 .viewDate{
-	color:#999;font-size:14px;
+	color:#999;font-size:15px;
 }
 .viewDate:after{
 	content:' /\a';
 }
 .viewWriter{
-	color:#999;font-size:14px;
+	color:#999;font-size:15px;
 }
 .viewBody{
 	width:900px;min-height:300px;border-radius:3px;
@@ -270,7 +277,12 @@
 .viewFooter{
 	
 }
-
+.addFileHolder{
+	width:900px;height:40px;border-radius:3px;
+	margin:0 auto 10px auto;padding:5px 10px;
+	border:1px solid #d0d3db;font-size:14px;
+	display:flex;align-items:center;
+}
 .viewBtnList{
 	width:900px;margin:0 auto;padding-bottom:50px;
 	display:flex;align-items:center;justify-content:space-between;
@@ -317,7 +329,7 @@
     line-height: 20px;
     text-decoration: none;
     color: #666;cursor:pointer;
-    font-size: 12px;
+    font-size: 13px;border:1px solid #dee3eb;
     font-family: Georgia;
     display: inline-block;
     background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));
@@ -336,6 +348,9 @@
     background-image: -moz-linear-gradient(top,#f1f1f1,#f5f5f5);
     background-image: -o-linear-gradient(top,#f1f1f1,#f5f5f5);
     background-image: -ms-linear-gradient(top,#f1f1f1,#f5f5f5);
+}
+.txtFileName{
+	font-size:14px;color:#999
 }
 /*Edit end*/
 

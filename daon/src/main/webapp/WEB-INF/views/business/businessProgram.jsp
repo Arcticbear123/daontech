@@ -8,7 +8,7 @@
 			<div class="business-outlineLabel">개요</div>
 			<div class="business-outlineIcon"><i class="fal fa-ellipsis-v"></i></div>
 			<div class="business-outlineText">
-				AM, PLM 시스템 및 선체/의장 분야 어플리케이션의 개발 및 유지보수 업무를 수행하며<br>
+				CAD, PLM 시스템 및 선체/의장 분야 어플리케이션의 개발 및 유지보수 업무를 수행하며<br>
 				<span class="orange fs24 core bold">"고객 맞춤형 IT시스템 개발, 운영"</span>에 힘쓰고 있습니다. 
 			</div>
 		</div>

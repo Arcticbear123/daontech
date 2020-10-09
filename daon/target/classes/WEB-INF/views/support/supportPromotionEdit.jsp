@@ -23,28 +23,32 @@
 	</div>
 	<div class="breadCrumb">
 		<div class="breadCrumb-home" onclick="goMenu('HOME')"><i class="fal fa-home"></i></div>
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">문의사항</div>		
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 1)">NEWS</div>
-		<div class="breadCrumb-btn breadCrumb-on" onclick="goMenu('SUPPORT', 2)">홍보자료</div>		
+		<!-- <div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">문의사항</div> -->		
+		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">NEWS</div>
+		<div class="breadCrumb-btn breadCrumb-on" onclick="goMenu('SUPPORT', 1)">홍보자료</div>		
 	</div>
 	<div class="container">
 		<div class="content">
 			<span class="content-header">홍보자료</span>
+			<form id="promotionForm" name="promotionForm" class ="promotionForm" action="/insertPromotion" enctype="multipart/form-data" method="POST" onsubmit="return false;">
 			<div class="content-body">
 				<div class="supportPromotionEdit">											
-					<input class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
-					<textarea class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
+					<input id="board_title" name="board_title" class="shadowInput" placeholder="제목" style="margin-bottom:10px;"/>
+					<textarea id="board_content" name="board_content" class="shadowTextarea" style="resize:none;margin-bottom:5px;"></textarea>
 					<div class="addFileInput" style="margin-bottom:10px;">
 						<i class="addFileIcon fas fa-folder-open"></i>
-						<button class="addFileButton">파일 선택</button>
+						<input id="promotionFileBtn" type="file" id="files[0]" name="files[0]" value="" style="display:none;"/>
+						<label for="promotionFileBtn" class="addFileButton">파일 선택</label>
+						<span id="promotionFileText" class="txtFileName">선택된 파일 없음</span>
 					</div>
+					
 					<div class="promotionEdit-btnArea">
 						<button class="cancelBtn" onclick="goBack()" style="margin-right:10px;">취 소</button>
-						<button class="submitBtn">작성완료</button>
+						<button type="button" class="submitBtn" onclick="insertPromotion()">작성완료</button>
 					</div>
 				</div>				
 			</div>
-			
+			</form>
 		</div>
 	</div>
 	
@@ -65,15 +69,84 @@
 		
 	</div>
 	
+	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="js/ui.js"></script>
-	<script>
-	$(document).ready(function(){
+	<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript">
+
+    
+    /** 게시판 - 작성  */
+    function insertPromotion(){
+ 
+        var boardTitle = $("#board_title").val();
+        var boardContent = $("#board_content").val();
+        
+        if (boardTitle == ""){            
+            alert("제목을 입력해주세요.");
+            $("#board_title").focus();
+            return;
+        }
+        
+        if (boardContent == ""){            
+            alert("내용을 입력해주세요.");
+            $("#board_content").focus();
+            return;
+        }
+        
+        var yn = confirm("게시글을 등록하시겠습니까?");        
+        if(yn){
+            
+        	 var filesChk = $("input[name='files[0]']").val();
+             if(filesChk == ""){
+                 $("input[name='files[0]']").remove();
+             }
+        	
+             $("#promotionForm").ajaxForm({    
+            	
+                url     : "/insertPromotion",
+                dataType: "JSON",
+                enctype : "multipart/form-data",
+                type    : "POST",   
+                cache   : false,
+                async   : true, 
+                success : function(obj) {
+                    insertPromotionCallback(obj);                
+                },           
+                error     : function(xhr, status, error) {}
+                
+            }).submit();
+        }
+    }
+    
+    /** 게시판 - 작성 콜백 함수 */
+    function insertPromotionCallback(obj){
+    
+        if(obj != null){        
+            
+            var result = obj.result;
+            
+            if(result == "SUCCESS"){                
+                alert("게시글 등록을 성공하였습니다.");                
+                goBack();                
+            } else {                
+                alert("게시글 등록을 실패하였습니다.");    
+                return;
+            }
+        }
+    }
+    $(document).ready(function(){
 		$('.gnbBtn').eq(3).addClass('blue');	//메뉴이동시 메뉴버튼 디자인 변경		
 		$('.content').show();	//내용 항상 보이게
+		
+		$('#promotionFileBtn').on('change', function(){
+			var name = $('#promotionFileBtn').val();
+			var splitName = name.split('\\');
+			var length = splitName.length;
+			var fileName = splitName[length - 1];
+			$('#promotionFileText').text(fileName);
+		});
 	});	
-	
-	
-	</script>
+</script>
 </body>
 </html>
 

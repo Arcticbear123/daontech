@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,11 @@
 
 </head>
 <body>
+	<%    
+	    String boardno = request.getParameter("boardno");        
+	%> 
+	<c:set var="boardno" value="<%=boardno%>"/> <!-- 게시글 번호 -->
+	
 	<!-- Global Navigation Bar -->
 	<jsp:include flush="false" page="../common/gnb.jsp" />
 	
@@ -23,38 +30,36 @@
 	</div>
 	<div class="breadCrumb">
 		<div class="breadCrumb-home" onclick="goMenu('HOME')"><i class="fal fa-home"></i></div>
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">문의사항</div>		
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 1)">NEWS</div>
-		<div class="breadCrumb-btn breadCrumb-on" onclick="goMenu('SUPPORT', 2)">홍보자료</div>		
+		<!-- <div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">문의사항</div> -->		
+		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">NEWS</div>
+		<div class="breadCrumb-btn breadCrumb-on" onclick="goMenu('SUPPORT', 1)">홍보자료</div>			
 	</div>
 	<div class="container">
 		<div class="content">
 			<span class="content-header">홍보자료</span>
-			<div class="content-body">
-			
+			<div class="content-body">			
 				<div class="supportPromotionView">
+					<form id="promotionForm" name="promotionForm">
+					<input type="hidden" id="board_no" name="board_no" value="${boardno}"/> <!-- 게시글 번호 -->
 					<div class="viewHeader">
-						<span class="viewTitle">다온기술 모임 사진입니다.</span>
-						<span class="viewDate">2020.03.29</span>
+						<span id = "board_title" class="viewTitle"></span>
+						<div>
+							<span id = "reg_date" class="viewDate"></span>
+							<span id = "board_writer" class="viewWriter"></span>
+						</div>
 					</div>
-					<div class="viewBody">
-						<span class="viewContent">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id risus vitae arcu tincidunt vehicula. Duis placerat massa nec risus fermentum pulvinar. Nam pulvinar tristique justo in varius. Vestibulum sit amet ligula gravida, posuere tellus auctor, maximus purus. Nam nec diam fringilla erat lacinia posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec sed sapien nec arcu convallis commodo id nec nisl. Nullam luctus nunc a vulputate gravida. Donec dui elit, auctor vel suscipit eget, auctor at ante.
-						</span>
-					</div>
+					<textarea id="board_content" class="viewBody" style="resize:none;background:#fff;" disabled>
+						<!-- 게시글 내용이 들어감 -->
+					</textarea>
 					<div class="viewFooter">						
-						<div class="promotionViewFile">
-							<i class="addFileIcon fas fa-folder-open"></i>
-							<a href="#">다온기술 단체사진.png</a>
-						</div>
-						<div class="promotionViewFile">
-							<i class="addFileIcon fas fa-folder-open"></i>
-							<a href="#">다온기술 단체사진.jpg</a>
-						</div>
+						
 					</div>
 					<div class="viewBtnList">
-						<button class="normalBtn" onclick="goBack()">목 록</button>
-						<button class="normalBtn" onclick="goTop()">TOP</button>
+						<div style="display:flex;align-items:center;">
+							<button type="button" class="normalBtn" onclick="javascript:goBack()" style="margin-right:10px;">목 록</button>
+							<button type="button" class="normalBtn" onclick="javascript:deletePromotion();">삭 제</button>
+						</div>						
+						<button type="button" class="normalBtn" onclick="goTop()">TOP</button>
 					</div>
 				</div>	
 				
@@ -82,10 +87,137 @@
 	
 	<script type="text/javascript" src="js/ui.js"></script>
 	<script>
-	$(document).ready(function(){
+	$(document).ready(function(){        
 		$('.gnbBtn').eq(3).addClass('blue');	//메뉴이동시 메뉴버튼 디자인 변경		
-		$('.content').show();	//내용 항상 보이게
-	});	
+		$('.content').show();	//내용 항상 보이게		
+		
+		getPromotionDetail();   //게시글 상세내용 조회     
+		
+		var data = '';
+		$.each( $('#promotionForm').serializeArray(), function(key, val){
+		    data += ","+val['name']+":"+val['value'];
+		});
+		console.log( data.substr(1) );
+	});
+	
+	
+	/** 게시판 - 수정 페이지 이동 */
+	/**function goBoardUpdate(){
+	    
+	    var boardSeq = $("#board_no").val();
+	    
+	    location.href = "/recruit/boardUpdate?boardno="+ boardno;
+	}*/
+	
+	/** 게시판 - 상세 조회  */
+    function getPromotionDetail(boardno){	        
+        var boardno = $("#boardno").val();
+ 		console.log(boardno);
+        if(boardno != ""){	            
+            $.ajax({                  
+                url     : "/getPromotionDetail",
+                data    : $("#promotionForm").serialize(),
+                dataType: "JSON",
+                cache   : false,
+                async   : true,
+                type    : "POST",    
+                success : function(obj) {
+                    getPromotionDetailCallback(obj);                
+                },           
+                error     : function(xhr, status, error) {
+                	alert("code = "+ xhr.status + " message = " + xhr.responseText + " error = " + error);	                	
+            	}	                
+             });
+        } else {
+            alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
+        }            
+    }
+	 /** 게시판 - 상세 조회  콜백 함수 */
+    function getPromotionDetailCallback(obj){
+        console.log(obj);
+        var str = "";	        
+        if(obj != null){
+            var boardno        = obj.board_no; 
+            var boardtitle     = obj.board_title; 
+            var boardContent   = obj.board_content; 
+            var regdate		   = obj.reg_date;
+            var boardwriter    = obj.board_writer;
+            var files          = obj.files;
+            var filesLen	   = files.length;
+                    
+            $("#board_title").text(boardtitle);            
+            $("#board_content").val(boardContent);
+            $('#reg_date').text(regdate);
+            $("#board_writer").text(boardwriter);
+            
+            if(filesLen > 0){
+            	for(var i=0; i < filesLen; i++){
+            		var boardno    = files[i].board_no;
+                    var fileNo     = files[i].file_no;
+                    var fileNameKey = files[i].file_name_key;
+                    var fileName     = files[i].file_name;
+                    var filePath     = files[i].file_path;
+                    var fileSize     = files[i].file_size;
+                    
+                    console.log("fileName : " + fileName);
+                    
+                    str += "<div class=\"addFileHolder\">";
+                    str += "<i class=\"addFileIcon fas fa-folder-open\"></i>";
+                    str += "<a href=\"/fileDownload?fileNameKey=" + encodeURI(fileNameKey) + "&fileName=" + encodeURI(fileName) + "&filePath=" + encodeURI(filePath) + "\">" + fileName + "</a>";
+                    str += "</div>";
+                    console.log(str);
+                    $('.viewFooter').append(str);
+            	}
+            }
+            
+        } else {	            
+            alert("등록된 글이 존재하지 않습니다.");
+            return;
+        }        
+    }
+	 
+    /** 게시판 - 삭제  */
+    function deletePromotion(){	 
+        var boardno = $("#board_no").val();	        
+        var yn = confirm("게시글을 삭제하시겠습니까?");        
+        if(yn){	            
+            $.ajax({
+                url     : "/deletePromotion",
+                data    : $("#promotionForm").serialize(),
+                dataType: "JSON",
+                cache   : false,
+                async   : true,
+                type    : "POST",    
+                success : function(obj) {
+                    deletePromotionCallback(obj);                
+                },           
+                error     : function(xhr, status, error) {
+                	alert("code = "+ xhr.status + " message = " + xhr.responseText + " error = " + error);
+                }
+                
+             });
+        }        
+    }
+    
+    /** 게시판 - 삭제 콜백 함수 */
+    function deletePromotionCallback(obj){	    
+        if(obj != null){     	            
+            var result = obj.result;	            
+            if(result == "SUCCESS"){                
+                alert("게시글 삭제를 성공하였습니다.");                
+                goBack();                
+            } else {                
+                alert("게시글 삭제를 실패하였습니다.");    
+                return;
+            }
+        }
+    }
+    
+    /** 게시판 - 첨부파일 다운로드 */
+    function fileDownload(fileNameKey, fileName, filePath){
+            
+        location.href = "/fileDownload?fileNameKey="+fileNameKey+"&fileName="+fileName+"&filePath="+filePath;
+    }	
 	</script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 			<div class="business-outlineIcon"><i class="fal fa-ellipsis-v"></i></div>
 			<div class="business-outlineText">
 				표준 라이브러리, 3D 라이브러리 등의 최적화된 CAD 라이브러리를 구축하여<br>
-				<span class="orange fs24 core bold">"고객의 업무효율 향상시키며 최상의 서비스"</span>를 지원합니다.
+				<span class="orange fs24 core bold">"고객의 업무효율 향상시키며 최상의 서비스"</span>를 제공합니다.
 			</div>
 		</div>
 		<div class="business-content">

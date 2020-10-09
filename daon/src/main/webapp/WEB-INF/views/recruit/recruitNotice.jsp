@@ -20,7 +20,8 @@
 	    		<jsp:param name="maxPage" value="5"/>
 	    		<jsp:param name="target" value="recruitPaging"/>
 	    		<jsp:param name="fnList" value="getBoardList"/>
-	    		<jsp:param name="fnCount" value="getBoardCount"/>	    		
+	    		<jsp:param name="fnCount" value="getBoardCount"/>
+	    		<jsp:param name="menu" value="Board"/>	    		
 			</jsp:include>
 		</div>
 		

@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animation.css">
 	<link rel="stylesheet" type="text/css" href="css/support.css">
+	<link rel="stylesheet" type="text/css" href="css/paging.css">
 	<script src="js/jquery.min.js"></script>		
 
 </head>
@@ -23,13 +24,13 @@
 	</div>
 	<div class="breadCrumb">
 		<div class="breadCrumb-home" onclick="goMenu('HOME')"><i class="fal fa-home"></i></div>
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">문의사항</div>		
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 1)">NEWS</div>
-		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 2)">홍보자료</div>		
+		<!-- <div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">문의사항</div> -->		
+		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 0)">NEWS</div>
+		<div class="breadCrumb-btn" onclick="goMenu('SUPPORT', 1)">홍보자료</div>		
 	</div>
 	
 	<div class="container">		
-		<jsp:include flush="false" page="supportInquery.jsp" />
+		<%--<jsp:include flush="false" page="supportInquery.jsp" /> --%>
 		<jsp:include flush="false" page="supportNews.jsp" />
 		<jsp:include flush="false" page="supportPromotion.jsp" />		
 		

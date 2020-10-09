@@ -112,12 +112,12 @@ public class BoardController {
 		
 		return "recruit/recruitNoticeEdit";
 	}
-    
+    /*
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
 	public String upload(Locale locale, Model model) {
 
 		return "upload";
-	}
+	}*/
     
     /** 게시판 - 첨부파일 다운로드 */
     @RequestMapping("/fileDownload")                      
