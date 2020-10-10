@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 <div class="gnb">
 	<div class="logoArea">
@@ -41,31 +45,101 @@
 			</span>
 		</span>
 	</div>
-	<span class="gnbLoginBtn" onclick="openLoginForm()">로그인</span>
+	<c:choose>
+	<c:when test="${empty sessionScope.user_id}">
+		<span class="gnbLoginBtn" onclick="openLoginForm()">관리자 로그인</span>
+	</c:when>
+	<c:otherwise>
+		<span class="gnbLoginBtn" onclick="logOut()">로그아웃</span>
+	</c:otherwise>
+	</c:choose>
 </div>
 <div class="loginForm">
 	<i class="loginCloseBtn far fa-times" onclick="closeLoginForm()"></i>
 	<div class="loginLabel">관리자 로그인</div>
-	<div class="loginRow">
-		<span class="loginRowLabel">ID :&nbsp;</span>
-		<input class="loginInput" type="text"/>
-	</div>
-	<div class="loginRow">
-		<span class="loginRowLabel">PW :&nbsp;</span>
-		<input class="loginInput" type="password"/>
-	</div>
-	<div class="" style="text-align:center;">
-		<button class="loginSubmit submitBtn">로그인</button>
-	</div>
-	
+	<form id ="LoginUserForm" class="LoginUserForm" action="/LoginCheck" method="POST">
+		<div class="loginRow">
+			<span class="loginRowLabel">ID :&nbsp;</span>
+			<input id="user_id" name="user_id" class="loginInput" type="text"/>
+		</div>
+		<div class="loginRow">
+			<span class="loginRowLabel">PW :&nbsp;</span>
+			<input id="user_pwd" name="user_pwd" class="loginInput" type="password"/>
+		</div>
+	</form>	
+		<div class="" style="text-align:center;">
+			<button class="loginSubmit submitBtn" onclick="LoginCheck()">로그인</button>
+		</div>		
 </div>
-	
-<script>
-function openLoginForm(){
-	$('.loginForm').show();
-}
 
-function closeLoginForm(){
-	$('.loginForm').hide();
+	
+<script type=text/javascript>
+//엔터키로 로그인 키입력 이벤트
+$(document).keydown(function(e){	
+	if($('.loginForm').is(':visible')){		
+		if(e.keyCode == 13){
+			$('.loginSubmit').trigger('click');
+		}
+	}
+});
+	function openLoginForm(){
+		$('.loginForm').show();
+	}
+	
+	function closeLoginForm(){
+		$('.loginForm').hide();
+	}
+
+function LoginCheck(){
+	 
+    var user_id = $("#user_id").val();
+    var user_pwd = $("#user_pwd").val();
+        
+    if (user_id == ""){            
+        alert("ID를 입력해주세요.");
+        $("#user_id").focus();
+    }
+    
+    if (user_pwd == ""){            
+        alert("비밀번호를 입력해주세요.");
+        $("#user_pwd").focus();
+    }
+    
+    	$.ajax({
+    		url		: "/CheckLogin",
+    		type	: "POST",
+	        data    : $("#LoginUserForm").serialize(),
+            cache   : false,
+            async   : true,
+	        success : function(obj) {
+	        	getUserInfoCallBack(obj);
+	        },
+	        error : function(xhr, status, error) {}
+	     });
+		}
+		
+	function getUserInfoCallBack(obj){
+    
+    if(obj != null){        
+        
+        var result = obj.result
+
+        if(result == "SUCCESS"){                
+            alert("로그인에 성공하였습니다."); 
+            goMenu('/')
+        } else {                
+            alert("등록되지 않은 사용자 입니다.");    
+            return;
+        }
+    }
 }
+	
+	function logOut(){
+		var logOutText = confirm("로그아웃 하시겠습니까?");
+		if(logOutText == true){
+			location.href ="/logout";	
+		}		
+	}
+
+
 </script>

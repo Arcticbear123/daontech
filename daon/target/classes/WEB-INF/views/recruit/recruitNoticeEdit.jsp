@@ -98,6 +98,7 @@
              if(filesChk == ""){
                  $("input[name='files[0]']").remove();
              }
+             debugger;
         	
              $("#boardForm").ajaxForm({    
             	

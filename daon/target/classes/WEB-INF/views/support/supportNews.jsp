@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <div class="content">
 	<span class="content-header">NEWS</span>
 	<div class="content-body">
@@ -24,8 +26,11 @@
 	    		<jsp:param name="menu" value="News"/>	    		
 			</jsp:include>
 		</div>
-		
-		<button type="button" class="submitBtn newsBtn" onclick="goNewsWrite()">글쓰기</button>	
+		<c:choose>
+			<c:when test="${not empty sessionScope.user_id}">
+			<button type="button" class="submitBtn newsBtn" onclick="goNewsWrite()">글쓰기</button>
+			</c:when>
+		</c:choose>	
 	</div>
 </div>
 

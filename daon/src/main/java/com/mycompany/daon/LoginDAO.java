@@ -21,9 +21,6 @@ public class LoginDAO {
     private static final String NAMESPACE = "com.mycompany.daon.boardmapper";
     	
 	public LoginDto LoginCheck(LoginUserForm LoginUserForm) throws Exception{
-		System.out.println("체크체크!");
-		System.out.println(LoginUserForm.getUser_id());
-		System.out.println(LoginUserForm.getUser_pwd());
 		return sqlSession.selectOne(NAMESPACE+".LoginCheck", LoginUserForm);
 	}
 
