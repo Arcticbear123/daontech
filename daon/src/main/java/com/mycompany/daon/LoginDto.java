@@ -4,6 +4,8 @@ public class LoginDto {
 
 	String user_id;
 	String user_pwd;
+	int cnt;
+	String result;
 	
 	public String getUser_id() {
 		return user_id;
@@ -18,4 +20,18 @@ public class LoginDto {
 		this.user_pwd = user_pwd;
 	}
 	
+    public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+	
+	public void setResult(String result) {
+        this.result = result;
+    }
 }

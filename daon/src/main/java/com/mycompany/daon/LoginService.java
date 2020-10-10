@@ -31,11 +31,16 @@ public class LoginService {
     
     public LoginDto LoginCheck(LoginUserForm LoginUserForm) throws Exception{
     	LoginDto LoginDto = new LoginDto();
-    	System.out.println("Dto출력 : ");
-    	System.out.println(LoginUserForm.getUser_id());
-    	System.out.println(LoginUserForm.getUser_pwd());
     	LoginDto = LoginDAO.LoginCheck(LoginUserForm);
- 
+    	
+    	int insertCnt = LoginDto.getCnt();
+    	
+    	System.out.println(insertCnt);
+    	if(insertCnt>0) {
+    		LoginDto.setResult("SUCCESS");
+    	}else {
+    		LoginDto.setResult("FAIL");
+    	}
          
          return LoginDto;
     	

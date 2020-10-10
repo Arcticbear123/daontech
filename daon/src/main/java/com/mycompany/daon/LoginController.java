@@ -48,20 +48,23 @@ public class LoginController {
     
     @RequestMapping(value = "/CheckLogin", method = RequestMethod.POST)
 	@ResponseBody
-	public String loginCheck(LoginUserForm LoginUserForm , HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+	public LoginDto LoginDto(LoginUserForm LoginUserForm , HttpServletRequest req, RedirectAttributes rttr, HttpSession session) throws Exception{
 		logger.info("post login");
-		System.out.println("체크체크!!");
-		HttpSession session = req.getSession();
+		
+		session = req.getSession();
         LoginDto LoginDto = LoginService.LoginCheck(LoginUserForm);
 		
-		if(LoginDto == null) {
+        int insertCnt = LoginDto.getCnt();
+        
+		if(insertCnt == 0) {
 			session.setAttribute("user_id", null);
 			rttr.addFlashAttribute("msg", false);
 		}else {
-			session.setAttribute("user_id", LoginDto);
+			session.setAttribute("user_id", LoginDto.getUser_id());
+			System.out.println("세션저장");
 		}
 		
-		return "home";
+		return LoginDto;
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
